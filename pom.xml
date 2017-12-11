@@ -1,0 +1,250 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.lww.design</groupId>
+  <artifactId>GraduationDesign</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>GraduationDesign Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <!-- 版本控制 -->
+  <properties>
+    <junit.version>4.12</junit.version>
+    <spring.version>4.3.9.RELEASE</spring.version>
+    <mysql2java.version>6.0.6</mysql2java.version>
+    <!-- mybatis版本号 -->
+    <mybatis.version>3.4.5</mybatis.version>
+    <!-- mybatis-spring版本号 -->
+    <mybatis-spring.version>1.3.1</mybatis-spring.version>
+    <!-- fastJson版本号 -->
+    <fastjson.version>1.2.39</fastjson.version>
+    <!-- logback日志 -->
+    <logback.version>1.2.3</logback.version>
+    <!-- logback在spring指定logback.xml文件位置 暂时不用 -->
+    <!--<logback-spring.version>0.1.4</logback-spring.version>-->
+    <slf4j.version>1.7.25</slf4j.version>
+    <druid.version>1.1.4</druid.version>
+    <servlet.version>2.5</servlet.version>
+    <!-- 插件版本 -->
+    <jetty.version>9.4.7.v20170914</jetty.version>
+    <compiler.version>3.1</compiler.version>
+    <war.version>2.6</war.version>
+  </properties>
+  <dependencies>
+    <!-- servlet******Begin -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>${servlet.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- servlet******Begin -->
+
+    <!-- druid******Begin -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>${druid.version}</version>
+    </dependency>
+    <!-- druid******End -->
+
+    <!-- logback******Begin -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <!--<dependency>-->
+    <!--<groupId>ch.qos.logback</groupId>-->
+    <!--<artifactId>logback-access</artifactId>-->
+    <!--<version>${logback.version}</version>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <!-- 需要指定logback.xml文件位置时使用 -->
+    <!--<dependency>-->
+    <!--<groupId>org.logback-extensions</groupId>-->
+    <!--<artifactId>logback-ext-spring</artifactId>-->
+    <!--<version>${logback-spring.version}</version>-->
+    <!--</dependency>-->
+
+    <!-- logback******End -->
+
+    <!-- fastjson******Begin -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
+    </dependency>
+    <!-- fastjson******End -->
+
+    <!-- mybatis******Begin -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>${mybatis-spring.version}</version>
+    </dependency>
+    <!-- mybatis******End -->
+
+    <!-- mysql驱动******Begin -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql2java.version}</version>
+    </dependency>
+    <!-- mysql驱动******End -->
+
+    <!-- Spring******Begin -->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-core</artifactId>-->
+    <!--<version>${spring.version}</version>-->
+    <!--<exclusions>-->
+    <!--<exclusion>-->
+    <!--<groupId>commons-logging</groupId>-->
+    <!--<artifactId>commons-logging</artifactId>-->
+    <!--</exclusion>-->
+    <!--</exclusions>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-context</artifactId>-->
+    <!--<version>${spring.version}</version>-->
+    <!--<exclusions>-->
+    <!--<exclusion>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-core</artifactId>-->
+    <!--</exclusion>-->
+    <!--</exclusions>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-aop</artifactId>-->
+    <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-web</artifactId>-->
+    <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Spring******End -->
+
+    <!-- Junit******Begin -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Junit******End -->
+
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <!-- 本地开发环境 -->
+      <id>dev</id>
+      <properties>
+        <profiles.active>dev</profiles.active>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <!-- 测试环境 -->
+      <id>test</id>
+      <properties>
+        <profiles.active>test</profiles.active>
+      </properties>
+    </profile>
+    <profile>
+      <!-- 生产环境 -->
+      <id>product</id>
+      <properties>
+        <profiles.active>product</profiles.active>
+      </properties>
+    </profile>
+  </profiles>
+  <build>
+    <finalName>GraduationDesign</finalName>
+    <resources>
+      <!-- 排除src/main/resources下 关于属性的设置 -->
+      <resource>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>dev/*</exclude>
+          <exclude>product/*</exclude>
+          <exclude>test/*</exclude>
+          <!-- 主要用于过滤spring下的文件 -->
+          <exclude>*/README.md</exclude>
+        </excludes>
+        <filtering>true</filtering>
+      </resource>
+      <!-- 根据环境加载src/main/resources下 关于属性的设置 -->
+      <resource>
+        <directory>src/main/resources/${profiles.active}</directory>
+        <!-- 用于过滤具体环境的README.md -->
+        <excludes>
+          <exclude>README.md</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler.version}</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+          <failOnError>true</failOnError>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${war.version}</version>
+        <configuration>
+          <warName>${project.artifactId}</warName>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+      </plugin>
+    </plugins>
+
+
+  </build>
+</project>
