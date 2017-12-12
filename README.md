@@ -1,13 +1,11 @@
-毕业设计项目
-基于
-技术      | 版本 
--------- | --------
-Spring   | 4.3.9.RELEASE
-mybatis  | 3.4.5
-druid    | 1.1.4
-logback  | 1.2.3
+###毕业设计
+####项目基于
+* 项目框架     Spring   4.3.9.RELEASE
+* 数据库连接    mybatis  3.4.5
+* 数据库连接池  druid    1.1.4
+* 日志使用     logback  1.2.3
+* 版本控制     maven    3.3.9
 
-使用maven进行项目管理
 
 
 
