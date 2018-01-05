@@ -6,6 +6,7 @@ package com.lww.design.graduation;
  */
 public class Info {
     public static void main(String[] args) {
+        System.out.println("Mac Test");
         System.out.println("lww graduation design");
     }
 }
