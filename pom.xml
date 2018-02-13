@@ -29,6 +29,7 @@
     <jetty.version>9.4.7.v20170914</jetty.version>
     <compiler.version>3.1</compiler.version>
     <war.version>2.6</war.version>
+    <lombok.version>1.16.18</lombok.version>
   </properties>
   <dependencies>
     <!-- servlet******Begin -->
@@ -142,6 +143,11 @@
     <!--</dependency>-->
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
       <exclusions>
@@ -161,6 +167,14 @@
       <scope>test</scope>
     </dependency>
     <!-- Junit******End -->
+
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
 
   </dependencies>
 

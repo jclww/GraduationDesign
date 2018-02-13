@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lww.design.graduation.mapper.TestAMapper">
+
+
+    <resultMap id="userBusinessMap" type="com.lww.design.graduation.entity.TestA">
+        <id column="num" property="num"/>
+        <result column="name"  property="name"/>
+        <result column="phone"  property="phone"/>
+        <result column="sex"  property="sex"/>
+    </resultMap>
+
+
+    <select id="search" resultMap="userBusinessMap">
+        select * from a
+    </select>
+</mapper>

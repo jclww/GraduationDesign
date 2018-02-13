@@ -34,10 +34,12 @@
         <!-- 设置编码格式 -->
         <property name="fileEncoding" value="UTF-8"></property>
     </bean>
+
+
     <!-- 全局异常处理 -->
     <!--<bean id="exceptionHandler" class="com.hiveview.admin.module.common.exception.ExceptionHandler"></bean>-->
 
     <!--<import resource="classpath:spring/spring-shiro.xml" />-->
     <!--<import resource="classpath:spring/spring-cache.xml" />-->
-    <!--<import resource="classpath:spring/spring-mybatis.xml" />-->
+    <import resource="classpath:spring/spring-mybatis.xml" />
 </beans>
