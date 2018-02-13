@@ -184,9 +184,9 @@
     </profile>
     <profile>
       <!-- 生产环境 -->
-      <id>product</id>
+      <id>pro</id>
       <properties>
-        <profiles.active>product</profiles.active>
+        <profiles.active>pro</profiles.active>
       </properties>
     </profile>
   </profiles>
@@ -198,7 +198,7 @@
         <directory>src/main/resources</directory>
         <excludes>
           <exclude>dev/*</exclude>
-          <exclude>product/*</exclude>
+          <exclude>pro/*</exclude>
           <exclude>test/*</exclude>
           <!-- 主要用于过滤spring下的文件 -->
           <exclude>*/README.md</exclude>
