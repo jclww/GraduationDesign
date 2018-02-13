@@ -23,7 +23,7 @@
         <typeAlias alias="Date" type="java.util.Date" />
     </typeAliases>
 
-    <plugins>
-        <plugin interceptor="com.lww.design.graduation.utils.SQLUpdateInterceptor" />
-    </plugins>
+    <!--<plugins>-->
+        <!--<plugin interceptor="com.lww.design.graduation.utils.SQLUpdateInterceptor" />-->
+    <!--</plugins>-->
 </configuration>
