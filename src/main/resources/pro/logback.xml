@@ -30,24 +30,55 @@
         </encoder>
     </appender>
 
-    <!--输出到logstash-->
-    <!--<appender name="stashAppender" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-    <!--<destination>${logstash.host}</destination>-->
+    <!--写入日志文件-->
+    <appender name="error"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
 
-    <!--&lt;!&ndash; encoder is required &ndash;&gt;-->
-    <!--<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />-->
-    <!--&lt;!&ndash;只输出info级别以下的日志&ndash;&gt;-->
-    <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
-    <!--<level>INFO</level>-->
-    <!--</filter>-->
-    <!--</appender>-->
+        <file>${log.path}/${application.error}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.path}/${application.error}-%d{yyyy-MM-dd}_%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
 
-    <logger name="org.springframework" level="DEBUG"/>
+    <appender name="SQL"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${application.sql}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.path}/${application.sql}-%d{yyyy-MM-dd}_%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
 
-    <!-- 日志输出级别 -->
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
+
+    <logger name="org.springframework" level="INFO"/>
+
+    <logger name="com.lww.design.graduation" additivity="true" level="INFO">
+    </logger>
+
+    <logger name="druid.sql.Statement" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="SQL"/>
+    </logger>
+    <root level="INFO">
         <appender-ref ref="fileAppender"/>
-        <!--<appender-ref ref="stashAppender"/>-->
+        <appender-ref ref="error"/>
     </root>
 </configuration>
