@@ -11,6 +11,5 @@ public class Info {
         System.out.println("Mac Test");
         System.out.println("lww graduation design");
         System.out.println(new Date().getTime());
-
     }
 }

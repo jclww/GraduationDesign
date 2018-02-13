@@ -18,10 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class HelloController {
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
-    @RequestMapping("/selectByName")
+    @RequestMapping("/hello")
     @ResponseBody
     public String selectByName(ModelMap model, HttpServletRequest hsr) {
-        logger.info("asdasdas");
         String str = "sadsa";
         return JSON.toJSONString(str);
     }

@@ -30,6 +30,23 @@
         </encoder>
     </appender>
 
+    <!--写入日志文件-->
+    <appender name="error"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${application.error}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.path}/${application.error}-%d{yyyy-MM-dd}_%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <!--输出到logstash-->
     <!--<appender name="stashAppender" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
     <!--<destination>${logstash.host}</destination>-->
@@ -43,6 +60,11 @@
     <!--</appender>-->
 
     <logger name="org.springframework" level="INFO"/>
+
+    <logger name="com.lww.design.graduation" additivity="true" level="ERROR">
+        <appender-ref ref="error"/>
+    </logger>
+
 
     <!-- 日志输出级别 -->
     <root level="DEBUG">
