@@ -49,4 +49,21 @@ public class HelloController {
         logger.error("error message!");
         return "error";
     }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public String insert() {
+        TestA a = new TestA();
+        a.setName("test1");
+        a.setNum(111);
+        a.setPhone("18729443");
+        a.setSex("男");
+        try {
+            testAService.insert(a);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return "error";
+        }
+        return "success";
+    }
 }

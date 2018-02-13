@@ -15,4 +15,22 @@
     <select id="search" resultMap="userBusinessMap">
         select * from a
     </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    insert into a (
+        <trim prefixOverrides="," suffixOverrides=",">
+            <if test="num !=null">NUM,</if>
+            <if test="name !=null">NAME,</if>
+            <if test="phone !=null">PHONE,</if>
+            <if test="sex !=null">SEX,</if>
+        </trim>
+        ) values (
+        <trim prefixOverrides="," suffixOverrides=",">
+            <if test="num !=null">#{num},</if>
+            <if test="name !=null">#{name},</if>
+            <if test="phone !=null">#{phone},</if>
+            <if test="sex !=null">#{sex},</if>
+        </trim>
+        )
+    </insert>
 </mapper>

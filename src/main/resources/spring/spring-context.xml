@@ -2,9 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-       http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+       http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
        default-lazy-init="true">
     <description>Spring公共配置</description>
     <context:annotation-config/>
@@ -51,4 +51,12 @@
     <!--<import resource="classpath:spring/spring-shiro.xml" />-->
     <!--<import resource="classpath:spring/spring-cache.xml" />-->
     <import resource="classpath:spring/spring-mybatis.xml" />
+
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 开启事务控制的注解支持 -->
+    <tx:annotation-driven/>
 </beans>
