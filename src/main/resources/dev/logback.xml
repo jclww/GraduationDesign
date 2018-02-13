@@ -32,6 +32,10 @@
 
     <!--写入日志文件-->
     <appender name="error"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+
         <file>${log.path}/${application.error}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>
@@ -74,23 +78,42 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
         </encoder>
     </appender>
+
+
+    <logger name="org.springframework" level="INFO"/>
+
+
+    <logger name="com.lww.design.graduation" additivity="true" level="INFO">
+    </logger>
+
+    <!--打印异常错误日志-->
+    <!--LoggerFactory.getLogger(errorLog);-->
+    <!--<logger name="errorLog" level="error" additivity="true">-->
+        <!--<appender-ref ref="ERROR" />-->
+    <!--</logger>-->
+
+    <!--<logger name="com.lww" additivity="true" level="INFO">-->
+    <!--</logger>-->
+
+    <!--<logger name="com.lww.design.graduation" additivity="true" level="ERROR">-->
+        <!--<appender-ref ref="error"/>-->
+    <!--</logger>-->
+
     <logger name="druid.sql.Statement" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="SQL"/>
         <appender-ref ref="STDOUT"/>
     </logger>
-
-    <logger name="org.springframework" level="INFO"/>
-
-    <logger name="com.lww.design.graduation" additivity="true" level="ERROR">
-        <appender-ref ref="error"/>
-    </logger>
-
-
     <!-- 日志输出级别 -->
+    <!--<root>-->
+        <!--<level value="error" />-->
+        <!--<level value="info" />-->
+        <!--<appender-ref ref="console" />-->
+    <!--</root>-->
     <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="fileAppender"/>
+        <appender-ref ref="error"/>
         <!--<appender-ref ref="stashAppender"/>-->
     </root>
 </configuration>

@@ -36,9 +36,17 @@ public class HelloController {
     @RequestMapping("/search")
     @ResponseBody
     public String search() {
+        logger.info("asdsadsa");
         List<TestA> aList = testAService.search();
         String aStr = JSON.toJSONString(aList);
         logger.info(aStr);
         return aStr;
+    }
+
+    @RequestMapping("/error")
+    @ResponseBody
+    public String error() {
+        logger.error("error message!");
+        return "error";
     }
 }
