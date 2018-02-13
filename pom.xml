@@ -25,6 +25,11 @@
     <slf4j.version>1.7.25</slf4j.version>
     <druid.version>1.1.4</druid.version>
     <servlet.version>2.5</servlet.version>
+    <!-- jedis版本号 -->
+    <jedis.version>2.9.0</jedis.version>
+    <spring-redis.version>1.6.0.RELEASE</spring-redis.version>
+
+
     <!-- 插件版本 -->
     <jetty.version>9.4.7.v20170914</jetty.version>
     <compiler.version>3.1</compiler.version>
@@ -165,6 +170,18 @@
       </exclusions>
     </dependency>
     <!-- Spring******End -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>${spring-redis.version}</version>
+    </dependency>
+    <!-- Jedis ******Begin-->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>${jedis.version}</version>
+    </dependency>
+    <!-- Jedis ******End-->
 
     <!-- Junit******Begin -->
     <dependency>
