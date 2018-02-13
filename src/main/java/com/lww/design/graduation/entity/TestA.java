@@ -7,6 +7,6 @@ public class TestA {
     private Integer num;
     private String name;
     private String phone;
-    private boolean sex;
+    private String sex;
 
 }

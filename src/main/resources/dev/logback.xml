@@ -59,6 +59,27 @@
     <!--</filter>-->
     <!--</appender>-->
 
+    <appender name="SQL"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${application.sql}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.path}/${application.sql}-%d{yyyy-MM-dd}_%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="druid.sql.Statement" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="SQL"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
     <logger name="org.springframework" level="INFO"/>
 
     <logger name="com.lww.design.graduation" additivity="true" level="ERROR">

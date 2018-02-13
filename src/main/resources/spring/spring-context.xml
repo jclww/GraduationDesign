@@ -23,15 +23,24 @@
         <!--<property name="location" value="classpath:${profiles.active}/application.properties" />-->
     <!--</bean>-->
 
-    <bean id="settingProperties"
-          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <list>
+    <!--<bean id="settingProperties"-->
+          <!--class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath*:/application.properties</value>-->
+                <!--&lt;!&ndash;<value>file:config/*.conf</value>&ndash;&gt;-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 设置编码格式 &ndash;&gt;-->
+        <!--<property name="fileEncoding" value="UTF-8"></property>-->
+    <!--</bean>-->
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations"> <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+            <array>
                 <value>classpath*:/application.properties</value>
-                <!--<value>file:config/*.conf</value>-->
-            </list>
+            </array>
         </property>
-        <!-- 设置编码格式 -->
         <property name="fileEncoding" value="UTF-8"></property>
     </bean>
 
