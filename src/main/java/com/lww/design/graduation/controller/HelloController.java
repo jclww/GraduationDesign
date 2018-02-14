@@ -72,8 +72,8 @@ public class HelloController {
     @RequestMapping("/redis")
     @ResponseBody
     public String redis() {
-        redisUtil.getRedisTemplate().opsForValue().set("name","tom");
-        String name = redisUtil.getRedisTemplate().opsForValue().get("name");
+        redisUtil.setString("name","tom");
+        String name = redisUtil.getString("name");
         return name;
     }
 

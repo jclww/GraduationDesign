@@ -24,6 +24,6 @@
     </typeAliases>
 
     <!--<plugins>-->
-        <!--<plugin interceptor="com.lww.design.graduation.utils.SQLUpdateInterceptor" />-->
+        <!--<plugin interceptor="com.lww.design.graduation.utils.bean.SQLUpdateInterceptor" />-->
     <!--</plugins>-->
 </configuration>

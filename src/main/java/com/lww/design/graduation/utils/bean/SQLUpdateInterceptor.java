@@ -1,4 +1,4 @@
-package com.lww.design.graduation.utils;
+package com.lww.design.graduation.utils.bean;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
