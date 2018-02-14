@@ -3,6 +3,7 @@ package com.lww.design.graduation.controller;
 import com.alibaba.fastjson.JSON;
 import com.lww.design.graduation.entity.TestA;
 import com.lww.design.graduation.service.TestAService;
+import com.lww.design.graduation.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
@@ -25,6 +26,8 @@ public class HelloController {
 
     @Resource
     private TestAService testAService;
+    @Resource
+    private RedisUtil redisUtil;
 
     @RequestMapping("/hello")
     @ResponseBody
@@ -66,4 +69,12 @@ public class HelloController {
         }
         return "success";
     }
+    @RequestMapping("/redis")
+    @ResponseBody
+    public String redis() {
+        redisUtil.getRedisTemplate().opsForValue().set("name","tom");
+        String name = redisUtil.getRedisTemplate().opsForValue().get("name");
+        return name;
+    }
+
 }
