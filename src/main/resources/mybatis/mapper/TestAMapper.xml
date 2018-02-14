@@ -4,7 +4,7 @@
 <mapper namespace="com.lww.design.graduation.mapper.TestAMapper">
 
 
-    <resultMap id="userBusinessMap" type="com.lww.design.graduation.entity.TestA">
+    <resultMap id="userBusinessMap" type="com.lww.design.graduation.entity.po.TestA">
         <id column="num" property="num"/>
         <result column="name"  property="name"/>
         <result column="phone"  property="phone"/>

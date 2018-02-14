@@ -1,4 +1,4 @@
-package com.lww.design.graduation.entity;
+package com.lww.design.graduation.entity.po;
 
 import lombok.Data;
 

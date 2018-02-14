@@ -2,7 +2,7 @@ package com.lww.design.graduation.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.lww.design.graduation.controller.HelloController;
-import com.lww.design.graduation.entity.TestA;
+import com.lww.design.graduation.entity.po.TestA;
 import com.lww.design.graduation.mapper.TestAMapper;
 import com.lww.design.graduation.service.TestAService;
 import org.slf4j.Logger;

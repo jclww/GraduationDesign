@@ -1,6 +1,6 @@
 package com.lww.design.graduation.mapper;
 
-import com.lww.design.graduation.entity.TestA;
+import com.lww.design.graduation.entity.po.TestA;
 
 import java.util.List;
 
