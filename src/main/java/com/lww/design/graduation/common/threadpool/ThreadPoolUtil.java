@@ -11,12 +11,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class ThreadPoolUtil {
-
     private static final Logger LOGGER = LoggerFactory.getLogger("threadPool");
     private static final int DEFAULT_MONITOR_PERIOD = 60;
     private int corePoolSize;
     private int maxPoolSize;
     private int monitorPeriod; // 监控时间间隔，单位：s
+
+    private final static Integer DEFAULT_COREPOOLSIZE = 100;
+    private final static Integer DEFAULT_MAXPOOLSIZE = 100;
 
     private AtomicLong rejectedTaskCount = new AtomicLong(0);
     private AtomicBoolean initFlag = new AtomicBoolean(false);
@@ -50,7 +52,7 @@ public class ThreadPoolUtil {
      * @return
      */
     public static ThreadPoolUtil getInstance(String bizName) {
-        return getInstance(bizName, 100, 100);
+        return getInstance(bizName, DEFAULT_COREPOOLSIZE, DEFAULT_MAXPOOLSIZE);
     }
 
     public static synchronized ThreadPoolUtil getInstance(String bizName, int corePoolSize, int maxPoolSize) {
@@ -70,7 +72,7 @@ public class ThreadPoolUtil {
     }
 
     private ThreadPoolUtil(String bizName){
-        LOGGER.warn("new {} threadPool",bizName);
+        LOGGER.info("new {} threadPool",bizName);
         this.bizName=bizName;
     }
 
@@ -78,11 +80,10 @@ public class ThreadPoolUtil {
         if (!initFlag.compareAndSet(false, true)) {
             return; // 防止重复初始化
         }
-
-        LOGGER.warn("init thread pool, corePoolSize:" + corePoolSize + " maxPoolSize:" + maxPoolSize);
+        LOGGER.info("init thread pool, corePoolSize:" + corePoolSize + " maxPoolSize:" + maxPoolSize);
 
         threadPool = new ThreadPoolExecutor(corePoolSize, maxPoolSize,
-                5L, TimeUnit.MINUTES, new LinkedBlockingQueue<Runnable>(1000), new NamedThreadFactory("crmProcessor"),
+                5L, TimeUnit.MINUTES, new LinkedBlockingQueue<Runnable>(1000), new NamedThreadFactory(bizName),
                 new ThreadPoolExecutor.AbortPolicy()) {
 
             @Override
@@ -102,12 +103,12 @@ public class ThreadPoolUtil {
         };
 
         monitorPeriod = monitorPeriod <= 0 ? DEFAULT_MONITOR_PERIOD : monitorPeriod;
-        monitor = Executors.newSingleThreadScheduledExecutor(new NamedThreadFactory("crm-processor-monitor", true));
+        monitor = Executors.newSingleThreadScheduledExecutor(new NamedThreadFactory(bizName + "-monitor", true));
         monitor.scheduleAtFixedRate(monitorTask, monitorPeriod, monitorPeriod, TimeUnit.SECONDS);
     }
 
 
-    public <T> Future<T> submit(CrmTask<T> task) {
+    public <T> Future<T> submit(WorkTask<T> task) {
         if (task == null) {
             throw new NullPointerException();
         }
