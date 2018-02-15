@@ -30,13 +30,13 @@
     <spring-redis.version>1.6.0.RELEASE</spring-redis.version>
     <spring-session.version>1.3.2.RELEASE</spring-session.version>
     <commons-lang3.version>3.4</commons-lang3.version>
+    <lombok.version>1.16.18</lombok.version>
 
 
     <!-- 插件版本 -->
     <jetty.version>9.4.7.v20170914</jetty.version>
     <compiler.version>3.1</compiler.version>
     <war.version>2.6</war.version>
-    <lombok.version>1.16.18</lombok.version>
   </properties>
   <dependencies>
     <!-- servlet******Begin -->
