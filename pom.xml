@@ -32,6 +32,10 @@
     <commons-lang3.version>3.4</commons-lang3.version>
     <lombok.version>1.16.18</lombok.version>
 
+    <shiro.version>1.4.0</shiro.version>
+    <ehcache.version>3.4.0</ehcache.version>
+    <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
+
 
     <!-- 插件版本 -->
     <jetty.version>9.4.7.v20170914</jetty.version>
@@ -207,12 +211,32 @@
     </dependency>
     <!-- Junit******End -->
 
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
       <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+    <dependency>
+      <groupId>org.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>${ehcache.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-ehcache -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-ehcache</artifactId>
+      <version>${shiro-ehcache.version}</version>
     </dependency>
 
   </dependencies>
