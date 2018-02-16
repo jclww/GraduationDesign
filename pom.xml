@@ -9,6 +9,8 @@
   <url>http://maven.apache.org</url>
   <!-- 版本控制 -->
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <junit.version>4.12</junit.version>
     <spring.version>4.3.9.RELEASE</spring.version>
     <mysql2java.version>6.0.6</mysql2java.version>
