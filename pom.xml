@@ -35,6 +35,8 @@
     <shiro.version>1.4.0</shiro.version>
     <ehcache.version>3.4.0</ehcache.version>
     <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
+    <guava.version>24.0-jre</guava.version>
+
 
 
     <!-- 插件版本 -->
@@ -237,6 +239,13 @@
       <groupId>org.apache.shiro</groupId>
       <artifactId>shiro-ehcache</artifactId>
       <version>${shiro-ehcache.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
     </dependency>
 
   </dependencies>

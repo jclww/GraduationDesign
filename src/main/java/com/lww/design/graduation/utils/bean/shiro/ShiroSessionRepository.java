@@ -1,6 +1,7 @@
 package com.lww.design.graduation.utils.bean.shiro;
 
 
+import com.lww.design.graduation.common.AppConstant;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -18,17 +19,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class ShiroSessionRepository {
 
-    private static final String REDIS_SHIRO_SESSION = "shiro-session:";
-    private static final int SESSION_VAL_TIME_SPAN = 1800;
-
-    // 保存到Redis中key的前缀 prefix+sessionId
-    @Setter
-    private String redisShiroSessionPrefix = REDIS_SHIRO_SESSION;
-
-    // 设置会话的过期时间
-    @Setter
-    private int redisShiroSessionTimeout = SESSION_VAL_TIME_SPAN;
-
     @Getter
     @Setter
     private RedisTemplate<String, Session> redisTemplate;
@@ -41,11 +31,9 @@ public class ShiroSessionRepository {
         try {
             getRedisTemplate().opsForValue()
                     .set(
-                            buildRedisSessionKey(
-                                    session.getId()
-                            )
+                            buildRedisSessionKey(session.getId())
                             , session
-                            , redisShiroSessionTimeout
+                            , AppConstant.SHIRO_SESSION_KEY_TIMEOUT
                             , TimeUnit.SECONDS);
         } catch (Exception e) {
             log.error("save session to redis error");
@@ -57,13 +45,10 @@ public class ShiroSessionRepository {
      */
     public void updateSession(final Session session) {
         try {
-            getRedisTemplate().boundValueOps(
-                    buildRedisSessionKey(
-                            session.getId()
-                    )
-            ).set(session
-                    , redisShiroSessionTimeout
-                    , TimeUnit.SECONDS
+            getRedisTemplate().boundValueOps(buildRedisSessionKey(session.getId()))
+                    .set(session
+                            , AppConstant.SHIRO_SESSION_KEY_TIMEOUT
+                            , TimeUnit.SECONDS
             );
         } catch (Exception e) {
             log.error("update session error");
@@ -77,7 +62,7 @@ public class ShiroSessionRepository {
     public void refreshSession(final Serializable sessionId) {
         getRedisTemplate().expire(
                 buildRedisSessionKey(sessionId)
-                , redisShiroSessionTimeout
+                , AppConstant.SHIRO_SESSION_KEY_TIMEOUT
                 , TimeUnit.SECONDS
         );
     }
@@ -112,6 +97,6 @@ public class ShiroSessionRepository {
      * 通过sessionId获取sessionKey
      */
     private String buildRedisSessionKey(final Serializable sessionId) {
-        return redisShiroSessionPrefix + sessionId;
+        return AppConstant.SHIRO_SESSION_KEY_PREFIX + sessionId;
     }
 }

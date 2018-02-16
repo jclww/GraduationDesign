@@ -16,4 +16,22 @@ public class AppConstant {
      */
     public static final Date SYSTEM_BEGIN_TIME = new Date(0L);
 
+    /**
+     * shiro session 前缀
+     */
+    public static final String SHIRO_SESSION_KEY_PREFIX = "shiro-session:";
+
+    /**
+     * shiro 过期时间
+     */
+    public static final Integer SHIRO_SESSION_KEY_TIMEOUT = 1800;
+
+    /**
+     * 密码加密后缀
+     */
+    public static final String PWD_ENCRY_SUFFIX = "A(Q_Q)=:)==&";
+
+
+
+
 }

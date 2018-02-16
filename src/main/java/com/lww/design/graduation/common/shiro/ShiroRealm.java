@@ -1,23 +1,24 @@
 package com.lww.design.graduation.common.shiro;
 
 
-import com.github.izhangzhihao.SpringMVCSeedProject.Model.Permission;
-import com.github.izhangzhihao.SpringMVCSeedProject.Model.Role;
-import com.github.izhangzhihao.SpringMVCSeedProject.Model.User;
-import com.github.izhangzhihao.SpringMVCSeedProject.Service.UserService;
+import com.lww.design.graduation.entity.po.permission.Permission;
+import com.lww.design.graduation.entity.po.permission.Role;
+import com.lww.design.graduation.entity.po.permission.User;
+import com.lww.design.graduation.entity.vo.permission.UserPermissionVO;
+import com.lww.design.graduation.service.permission.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.github.izhangzhihao.SpringMVCSeedProject.Utils.ListUtils.isNullOrEmpty;
 
 
 /**
@@ -47,14 +48,14 @@ public class ShiroRealm extends AuthorizingRealm {
         //保存权限
         List<String> permissions = new ArrayList<>();
         //拿到当前登陆的用户
-        User user = userService.getById(userName);
+        UserPermissionVO user = userService.getUserPermissionById(userName);
         if (user != null) {
             List<Role> userRoleList = user.getRoleList();
-            if (!isNullOrEmpty(userRoleList)) {
+            if (!CollectionUtils.isEmpty(userRoleList)) {
                 for (Role role : userRoleList) {
                     roles.add(role.getName());
                     List<Permission> rolePermissionList = role.getPermissionList();
-                    if (isNullOrEmpty(rolePermissionList)) {
+                    if (CollectionUtils.isEmpty(rolePermissionList)) {
                         permissions.addAll(
                                 rolePermissionList.stream()
                                         //.filter(permission -> !StringUtils.isEmpty(permission.getPermission()))// permission 不可为空
