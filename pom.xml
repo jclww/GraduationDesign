@@ -38,6 +38,7 @@
     <ehcache.version>3.4.0</ehcache.version>
     <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
     <guava.version>24.0-jre</guava.version>
+    <swagger2.version>2.7.0</swagger2.version>
 
 
 
@@ -249,6 +250,14 @@
       <artifactId>guava</artifactId>
       <version>${guava.version}</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${swagger2.version}</version>
+    </dependency>
+
 
   </dependencies>
 
