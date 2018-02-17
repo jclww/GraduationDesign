@@ -2,19 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-       http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+       http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
        default-lazy-init="true">
     <description>Spring公共配置</description>
-    <context:annotation-config/>
-
-
-    <context:component-scan base-package="com.lww.design.graduation">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:exclude-filter type="annotation"
-                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    </context:component-scan>
 
 
     <!-- 引入配置文件 -->
@@ -23,21 +15,49 @@
         <!--<property name="location" value="classpath:${profiles.active}/application.properties" />-->
     <!--</bean>-->
 
-    <bean id="settingProperties"
-          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <list>
+    <!--<bean id="settingProperties"-->
+          <!--class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath*:/application.properties</value>-->
+                <!--&lt;!&ndash;<value>file:config/*.conf</value>&ndash;&gt;-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 设置编码格式 &ndash;&gt;-->
+        <!--<property name="fileEncoding" value="UTF-8"></property>-->
+    <!--</bean>-->
+    <context:component-scan base-package="com.lww.design.graduation">
+        <!--spring配置不扫描以下包-->
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations"> <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+            <array>
                 <value>classpath*:/application.properties</value>
-                <!--<value>file:config/*.conf</value>-->
-            </list>
+            </array>
         </property>
-        <!-- 设置编码格式 -->
         <property name="fileEncoding" value="UTF-8"></property>
     </bean>
+
+
     <!-- 全局异常处理 -->
     <!--<bean id="exceptionHandler" class="com.hiveview.admin.module.common.exception.ExceptionHandler"></bean>-->
 
-    <!--<import resource="classpath:spring/spring-shiro.xml" />-->
+    <import resource="classpath:spring/spring-shiro.xml" />
     <!--<import resource="classpath:spring/spring-cache.xml" />-->
-    <!--<import resource="classpath:spring/spring-mybatis.xml" />-->
+    <import resource="classpath:spring/spring-mybatis.xml" />
+    <import resource="classpath:spring/spring-redis.xml" />
+
+    <!--spring redis-->
+    <!--<bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>-->
+
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 开启事务控制的注解支持 -->
+    <tx:annotation-driven/>
 </beans>

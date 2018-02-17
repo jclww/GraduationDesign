@@ -9,6 +9,8 @@
   <url>http://maven.apache.org</url>
   <!-- 版本控制 -->
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <junit.version>4.12</junit.version>
     <spring.version>4.3.9.RELEASE</spring.version>
     <mysql2java.version>6.0.6</mysql2java.version>
@@ -25,6 +27,21 @@
     <slf4j.version>1.7.25</slf4j.version>
     <druid.version>1.1.4</druid.version>
     <servlet.version>2.5</servlet.version>
+    <!-- jedis版本号 -->
+    <jedis.version>2.9.0</jedis.version>
+    <spring-redis.version>1.6.0.RELEASE</spring-redis.version>
+    <spring-session.version>1.3.2.RELEASE</spring-session.version>
+    <commons-lang3.version>3.4</commons-lang3.version>
+    <lombok.version>1.16.18</lombok.version>
+
+    <shiro.version>1.4.0</shiro.version>
+    <ehcache.version>3.4.0</ehcache.version>
+    <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
+    <guava.version>24.0-jre</guava.version>
+    <swagger2.version>2.7.0</swagger2.version>
+
+
+
     <!-- 插件版本 -->
     <jetty.version>9.4.7.v20170914</jetty.version>
     <compiler.version>3.1</compiler.version>
@@ -140,6 +157,18 @@
     <!--<artifactId>spring-web</artifactId>-->
     <!--<version>${spring.version}</version>-->
     <!--</dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
@@ -152,6 +181,31 @@
       </exclusions>
     </dependency>
     <!-- Spring******End -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>${spring-redis.version}</version>
+    </dependency>
+    <!-- Spring Session -->
+    <dependency>
+      <groupId>org.springframework.session</groupId>
+      <artifactId>spring-session</artifactId>
+      <version>${spring-session.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+
+    <!-- Jedis ******Begin-->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>${jedis.version}</version>
+    </dependency>
+    <!-- Jedis ******End-->
 
     <!-- Junit******Begin -->
     <dependency>
@@ -161,6 +215,49 @@
       <scope>test</scope>
     </dependency>
     <!-- Junit******End -->
+
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+    <dependency>
+      <groupId>org.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>${ehcache.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-ehcache -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-ehcache</artifactId>
+      <version>${shiro-ehcache.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${swagger2.version}</version>
+    </dependency>
+
 
   </dependencies>
 
@@ -184,9 +281,9 @@
     </profile>
     <profile>
       <!-- 生产环境 -->
-      <id>product</id>
+      <id>pro</id>
       <properties>
-        <profiles.active>product</profiles.active>
+        <profiles.active>pro</profiles.active>
       </properties>
     </profile>
   </profiles>
@@ -198,7 +295,7 @@
         <directory>src/main/resources</directory>
         <excludes>
           <exclude>dev/*</exclude>
-          <exclude>product/*</exclude>
+          <exclude>pro/*</exclude>
           <exclude>test/*</exclude>
           <!-- 主要用于过滤spring下的文件 -->
           <exclude>*/README.md</exclude>

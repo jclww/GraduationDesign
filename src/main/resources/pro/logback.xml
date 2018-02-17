@@ -21,9 +21,9 @@
                 ${log.path}/${application.name}-%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${log.maxSize}</maxFileSize>
+                <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>${log.maxDay}</maxHistory>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
@@ -42,26 +42,14 @@
                 ${log.path}/${application.error}-%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${log.maxSize}</maxFileSize>
+                <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>${log.maxDay}</maxHistory>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
         </encoder>
     </appender>
-
-    <!--输出到logstash-->
-    <!--<appender name="stashAppender" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-    <!--<destination>${logstash.host}</destination>-->
-
-    <!--&lt;!&ndash; encoder is required &ndash;&gt;-->
-    <!--<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />-->
-    <!--&lt;!&ndash;只输出info级别以下的日志&ndash;&gt;-->
-    <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
-    <!--<level>INFO</level>-->
-    <!--</filter>-->
-    <!--</appender>-->
 
     <appender name="SQL"  class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/${application.sql}.log</file>
@@ -70,26 +58,9 @@
                 ${log.path}/${application.sql}-%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${log.maxSize}</maxFileSize>
+                <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>${log.maxDay}</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
-        </encoder>
-    </appender>
-    
-    <!--线程池-->
-    <appender name="threadPool"  class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.path}/${application.threadPool}.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>
-                ${log.path}/${application.threadPool}-%d{yyyy-MM-dd}_%i.log
-            </fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${log.maxSize}</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>${log.maxDay}</maxHistory>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
@@ -97,44 +68,17 @@
     </appender>
 
 
-    <!--线程池-->
-    <logger name="threadPool" additivity="false">
-        <appender-ref ref="threadPool"/>
-    </logger>
-
-    <logger name="org.springframework" level="DEBUG"/>
-
+    <logger name="org.springframework" level="INFO"/>
 
     <logger name="com.lww.design.graduation" additivity="true" level="INFO">
     </logger>
 
-    <!--打印异常错误日志-->
-    <!--LoggerFactory.getLogger(errorLog);-->
-    <!--<logger name="errorLog" level="error" additivity="true">-->
-        <!--<appender-ref ref="ERROR" />-->
-    <!--</logger>-->
-
-    <!--<logger name="com.lww" additivity="true" level="INFO">-->
-    <!--</logger>-->
-
-    <!--<logger name="com.lww.design.graduation" additivity="true" level="ERROR">-->
-        <!--<appender-ref ref="error"/>-->
-    <!--</logger>-->
-
     <logger name="druid.sql.Statement" additivity="false">
         <level value="DEBUG"/>
-        <!--<appender-ref ref="SQL"/>-->
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SQL"/>
     </logger>
-    <!-- 日志输出级别 -->
-    <!--<root>-->
-        <!--<level value="error" />-->
-        <!--<level value="info" />-->
-        <!--<appender-ref ref="console" />-->
-    <!--</root>-->
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
-        <!--<appender-ref ref="fileAppender"/>-->
-        <!--<appender-ref ref="error"/>-->
+    <root level="INFO">
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="error"/>
     </root>
 </configuration>
