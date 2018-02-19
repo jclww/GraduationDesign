@@ -34,7 +34,7 @@ public class AppConstant {
     /**
      * 密码加密后缀
      */
-    public static final String FILE_UPLOAD_PATH = "/data/uploadFile";
+    public static final String FILE_UPLOAD_PATH = "/data/uploadFile/";
 
 
 

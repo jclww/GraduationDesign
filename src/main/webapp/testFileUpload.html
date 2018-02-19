@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+</head>
+<body>
+<form action="./fileupload?a=1" method="post"
+      enctype="multipart/form-data" name="form1">
+    <input type="file" name="uploadFiles">
+    <input type="file" name="uploadFiles">
+    <input type="submit" name="Submit" value="上传">
+</form>
+<hr>
+
+<form name="uploadform" method="POST" action="./fileupload?a=2"
+      ENCTYPE="multipart/form-data">
+
+    <table border="1" width="450" cellpadding="4" cellspacing="2"
+           bordercolor="#9BD7FF">
+
+        <tr>
+            <td width="100%" colspan="2">
+
+                文件1：
+                <input name="x" size="40" type="file">
+
+            </td>
+        </tr>
+
+        <tr>
+            <td width="100%" colspan="2">
+
+                文件2：
+                <input name="y" size="40" type="file">
+
+            </td>
+        </tr>
+
+        <tr>
+            <td width="100%" colspan="2">
+
+                文件3：
+                <input name="z" size="40" type="file">
+
+            </td>
+        </tr>
+
+    </table>
+
+    <br />
+    <br />
+
+    <table>
+
+        <tr>
+            <td align="center">
+                <input name="upload" type="submit" value="开始上传" />
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+</body>
+</html>
+

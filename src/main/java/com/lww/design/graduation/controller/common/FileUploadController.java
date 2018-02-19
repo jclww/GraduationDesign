@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.lww.design.graduation.common.AppConstant;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,28 +24,29 @@ public class FileUploadController {
     private static final File uploadDirectory = new File(AppConstant.FILE_UPLOAD_PATH);
 
 
-    @RequestMapping("/hello")
+    @RequestMapping("/fileupload")
     @ResponseBody
-    public String selectByName(MultipartFile[] uploadFiles) {
+    public String fileupload(MultipartFile[] uploadFiles) {
         if (ArrayUtils.isEmpty(uploadFiles)) {
             return "files is empty";
         }
 
         for (MultipartFile file : uploadFiles) {
-            logger.info(file.getName());
             try {
                 saveFile(file);
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }
         }
-        String str = "sadsa";
-        return JSON.toJSONString(str);
+        return "SUCCESS";
     }
 
     private void saveFile(MultipartFile file) throws Exception {
+        if (StringUtils.isBlank(file.getOriginalFilename())) {
+            throw new Exception("文件为空");
+        }
         byte[] data = readInputStream(file.getInputStream());
-        File uploadFile = new File(AppConstant.FILE_UPLOAD_PATH + file.getName());
+        File uploadFile = new File(AppConstant.FILE_UPLOAD_PATH + file.getOriginalFilename());
         //判断文件夹是否存在，不存在就创建一个
         File fileDirectory = new File(AppConstant.FILE_UPLOAD_PATH);
         synchronized (uploadDirectory) {
