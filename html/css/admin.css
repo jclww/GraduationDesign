@@ -276,7 +276,7 @@ form .form-group:last-child{padding-bottom:0;}
 .tognzhi .am-dropdown-content span{font-size: 9px; font-weight: 100; padding:1px 4px; margin-left: 7px;}
 .tognzhi .am-dropdown-content:after{border-bottom-color:#a1d166;bottom:-1px}
 
-.tognzhi .am-dropdown-header{ background: url(../img/admin/l_07.png) left top repeat-x; border-top-left-radius: 4px; border-top-right-radius: 4px; color: #fff; font-size: 16px;padding: 6px 10px; margin-bottom: 9px;}
+.tognzhi .am-dropdown-header{ background: url(../img/admin/green.png) left top repeat-x; border-top-left-radius: 4px; border-top-right-radius: 4px; color: #fff; font-size: 16px;padding: 6px 10px; margin-bottom: 9px;}
 
 .kuanjie{}
 .kuanjie a{ float: left; margin-left: 10px;}
