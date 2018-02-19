@@ -31,6 +31,11 @@ public class AppConstant {
      */
     public static final String PWD_ENCRY_SUFFIX = "A(Q_Q)=:)==&";
 
+    /**
+     * 密码加密后缀
+     */
+    public static final String FILE_UPLOAD_PATH = "/data/uploadFile";
+
 
 
 
