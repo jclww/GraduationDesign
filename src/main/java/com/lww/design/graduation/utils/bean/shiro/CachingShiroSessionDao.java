@@ -39,6 +39,7 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
             } else {
                 // 缓存
                 cache(session, session.getId());
+                log.info("local cache sessionId:{} from redis", sessionId);
             }
         }
         return session;
@@ -53,16 +54,20 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
     @Override
     protected Session doReadSession(final Serializable sessionId) {
         log.debug("begin doReadSession {} ", sessionId);
-        Session session = null;
+        Session session = getCachedSession(sessionId);
+        if(session != null) {
+            log.info("get session from localcache sessionId:{}", session.getId());
+            return session;
+        }
         try {
             session = sessionRepository.getSession(sessionId);
             if (session != null) {
                 // 重置Redis中缓存过期时间
                 sessionRepository.refreshSession(sessionId);
-                log.info("sessionId {} name {} 被读取", sessionId, session.getClass().getName());
+                log.info("get session sessionId {} name {} from redis", sessionId, session.getClass().getName());
             }
         } catch (Exception e) {
-            log.warn("读取Session失败", e);
+            log.error("get session from redis error", e);
         }
         return session;
     }
@@ -74,8 +79,9 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
         Session session = null;
         try {
             session = sessionRepository.getSession(sessionId);
+            log.info("get session sessionId {} name {} from redis", sessionId, session.getClass().getName());
         } catch (Exception e) {
-            log.warn("读取Session失败", e);
+            log.error("get session from redis error", e);
         }
         return session;
     }
@@ -90,11 +96,11 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
         // 创建一个Id并设置给Session
         Serializable sessionId = this.generateSessionId(session);
         assignSessionId(session, sessionId);
+        log.info("create session sessionId {} name {} set redis", sessionId, session.getClass().getName());
         try {
             sessionRepository.saveSession(session);
-            log.info("sessionId {} name {} 被创建", sessionId, session.getClass().getName());
         } catch (Exception e) {
-             log.error("创建Session失败", e);
+             log.error("save session defeat", e);
         }
         return sessionId;
     }
@@ -110,7 +116,7 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
                 return;
             }
         } catch (Exception e) {
-            log.error("ValidatingSession error");
+            log.error("ValidatingSession error{}",e.getMessage());
         }
         try {
             if (session instanceof ShiroSession) {
@@ -122,12 +128,12 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
                 ss.setChanged(false);
                 ss.setLastAccessTime(new Date());
                 sessionRepository.updateSession(session);
-                log.debug("sessionId {} name {} 被更新", session.getId(), session.getClass().getName());
+                log.info("update session sessionId {} name {}", session.getId(), session.getClass().getName());
             } else {
-                log.error("sessionId {} name {} 更新失败", session.getId(), session.getClass().getName());
+                log.error("update session sessionId {} name {} error", session.getId(), session.getClass().getName());
             }
         } catch (Exception e) {
-            log.error("更新Session失败", e);
+            log.error("error:{}", e.getMessage());
         }
     }
 
@@ -142,13 +148,13 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
      */
     @Override
     public void doDelete(final Session session) {
-        log.debug("begin doDelete {} ", session);
+        log.info("delete session sessionId:{} ", session.getId());
         try {
             sessionRepository.deleteSession(session.getId());
             this.unCache(session.getId());
-            log.debug("shiro session id {} 被删除", session.getId());
+            log.info("delete shiro session id {} success", session.getId());
         } catch (Exception e) {
-            log.error("删除Session失败", e);
+            log.error("delete shiro session id {} error:{}", e.getMessage());
         }
     }
 
@@ -159,9 +165,9 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
         try {
             Session session = super.getCachedSession(sessionId);
             super.uncache(session);
-            log.debug("本地 cache中缓存的Session id {} 失效", sessionId);
+            log.info("local cache Session id {} invalid", sessionId);
         } catch (Exception e) {
-            log.error("删除本地 cache中缓存的Session 失败", e);
+            log.error("delete local cache defeat{}", e.getMessage());
         }
     }
 
