@@ -107,7 +107,7 @@
     </bean>
 
     <!--自定义realm-->
-    <bean id="shiroRealm" class="com.lww.design.graduation.common.shiro.ShiroRealm">
+    <bean id="shiroRealm" class="com.lww.design.graduation.utils.bean.shiro.ShiroRealm">
         <property name="credentialsMatcher" ref="customCredentialsMatcher"/>
 
     </bean>

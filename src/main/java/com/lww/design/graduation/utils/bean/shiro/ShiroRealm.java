@@ -1,4 +1,4 @@
-package com.lww.design.graduation.common.shiro;
+package com.lww.design.graduation.utils.bean.shiro;
 
 
 import com.lww.design.graduation.entity.po.permission.Permission;
@@ -6,7 +6,9 @@ import com.lww.design.graduation.entity.po.permission.Role;
 import com.lww.design.graduation.entity.po.permission.User;
 import com.lww.design.graduation.entity.vo.permission.UserPermissionVO;
 import com.lww.design.graduation.service.permission.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 /**
  * Realm是专用于安全框架的Repository
  */
+@Slf4j
 public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
@@ -42,7 +45,7 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //获取当前登录的用户名
         String userName = (String) super.getAvailablePrincipal(principals);
-
+        log.info("user:{}, login", userName);
         //保存角色
         List<String> roles = new ArrayList<>();
         //保存权限
@@ -58,7 +61,6 @@ public class ShiroRealm extends AuthorizingRealm {
                     if (CollectionUtils.isEmpty(rolePermissionList)) {
                         permissions.addAll(
                                 rolePermissionList.stream()
-                                        //.filter(permission -> !StringUtils.isEmpty(permission.getPermission()))// permission 不可为空
                                         .map(Permission::getPermission)
                                         .collect(Collectors.toList()
                                         )
@@ -93,7 +95,7 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken) throws AuthenticationException {
-        UsernamePasswordToken token = (UsernamePasswordToken) authToken;
+        org.apache.shiro.authc.UsernamePasswordToken token = (UsernamePasswordToken) authToken;
         User user = userService.getById(token.getUsername());
         if (user != null) {
             return new SimpleAuthenticationInfo(

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class UserPermissionVO implements Serializable {
+public class PermissionVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

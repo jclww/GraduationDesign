@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+ "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!--  <properties url="file:///E:/code/github/domyshop-service/src/main/resources/application-dev.properties"/>-->
+  
+  <classPathEntry location="E:/maven_repo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar" />
+  
+  <!-- This should cause an error because sqlMapGenerator is required
+       if there is no javaClientGenerator -->
+  <context id="MyBatis3NoClient" targetRuntime="MyBatis3" defaultModelType="flat">
+    <!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> -->
+	
+	<commentGenerator type="org.mybatis.generator.ext.MyCommentGenerator">
+		<property name="suppressAllComments" value="false" />
+	</commentGenerator>
+
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://60.206.137.209:3306/domyshop"
+			userId="root" password="hiveview" />
+	
+	<!-- 实体类 -->
+    <javaModelGenerator targetPackage="com.hiveview.entity" targetProject="domyshop-entity">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+      <property name="rootClass" value="com.hiveview.entity.BaseEntity"/>
+    </javaModelGenerator>
+	
+	<!-- sql文件 -->
+	<sqlMapGenerator targetPackage="mapper" targetProject="domyshop-services/src/main/resources" />
+   		
+   	<!-- mapper层 -->
+	<javaClientGenerator type="XMLMAPPER" targetPackage="com.hiveview.services.dao"
+     	targetProject="domyshop-services" interfaceExtendSupInterface="com.hiveview.core.dao.CrudMapper"
+     	mapperScanAnnotation="com.hiveview.core.mybatis.annotation.MyBatisDao" >
+    </javaClientGenerator>
+	
+	<!-- service -->
+	<javaServiceGenerator targetPackage="com.hiveview.services.service"
+		targetProject="domyshop-services" interfaceExtendSupInterface="com.hiveview.core.service.BaseCrudService"
+		extendSupClass="com.hiveview.core.service.impl.BaseCrudServiceImpl" /> 
+	
+    <tableSetting isSchema="true" enableCountByExample="false"
+		enableUpdateByExample="false" enableDeleteByExample="false"
+		enableSelectByExample="false" selectByExampleQueryId="false">
+		<prop name="replaceTablePrefix">
+			<list>
+				<prefix name="" value="" />
+			</list>
+		</prop>
+		<!-- 忽略schema，避免在xml中出现schema.表名 -->
+		<prop name="ignoreGeneratorSchema" value="true" />
+	</tableSetting>
+  </context>
+
+</generatorConfiguration>
