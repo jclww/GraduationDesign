@@ -8,6 +8,7 @@ import org.springframework.data.redis.serializer.SerializationException;
 import java.nio.charset.Charset;
 
 @Slf4j
+@Deprecated
 public class FastJsonRedisSerializer implements RedisSerializer<Object> {
 
     private static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
