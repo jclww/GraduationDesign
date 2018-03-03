@@ -1,8 +1,6 @@
 package com.lww.design.graduation.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.lww.design.graduation.entity.po.user.TestA;
-import com.lww.design.graduation.service.test.TestAService;
 import com.lww.design.graduation.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +21,9 @@ import java.util.List;
 @RestController
 public class HelloController {
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
-
-    @Resource
-    private TestAService testAService;
+//
+//    @Resource
+//    private TestAService testAService;
     @Resource
     private RedisUtil redisUtil;
 
@@ -40,10 +38,11 @@ public class HelloController {
     @ResponseBody
     public String search() {
         logger.info("asdsadsa");
-        List<TestA> aList = testAService.search();
-        String aStr = JSON.toJSONString(aList);
-        logger.info(aStr);
-        return aStr;
+//        List<TestA> aList = testAService.search();
+//        String aStr = JSON.toJSONString(aList);
+//        logger.info(aStr);
+//        return aStr;
+        return "asdsadsa";
     }
 
     @RequestMapping("/error")
@@ -56,17 +55,17 @@ public class HelloController {
     @RequestMapping("/insert")
     @ResponseBody
     public String insert() {
-        TestA a = new TestA();
-        a.setName("test1");
-        a.setNum(111);
-        a.setPhone("18729443");
-        a.setSex("男");
-        try {
-            testAService.insert(a);
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            return "error";
-        }
+//        TestA a = new TestA();
+//        a.setName("test1");
+//        a.setNum(111);
+//        a.setPhone("18729443");
+//        a.setSex("男");
+//        try {
+//            testAService.insert(a);
+//        } catch (Exception e) {
+//            logger.error(e.getMessage());
+//            return "error";
+//        }
         return "success";
     }
     @RequestMapping("/redis")
