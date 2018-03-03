@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration PUBLIC
- "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
- "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-  <!--  <properties url="file:///E:/code/github/domyshop-service/src/main/resources/application-dev.properties"/>-->
-  
-  <classPathEntry location="E:/maven_repo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar" />
-  
-  <!-- This should cause an error because sqlMapGenerator is required
-       if there is no javaClientGenerator -->
-  <context id="MyBatis3NoClient" targetRuntime="MyBatis3" defaultModelType="flat">
-    <!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> -->
-	
-	<commentGenerator type="org.mybatis.generator.ext.MyCommentGenerator">
-		<property name="suppressAllComments" value="false" />
-	</commentGenerator>
+	<context id="test" targetRuntime="MyBatis3">
+		<!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>-->
+		<!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>-->
+		<!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
+		<commentGenerator>
+			<!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
+			<!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://120.24.91.23:3306/snacks" userId="alimysql" password="Lww:159753">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<!-- This property is used to specify whether MyBatis Generator should
+                force the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.lww.design.graduation.entity.po"
+							targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+			<property name="constructorBased" value="false"/>
+		</javaModelGenerator>
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="mybatis.mapper"
+						 targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+							 targetPackage="com.lww.design.graduation.mapper"
+							 implementationPackage="com.lww.design.graduation.mapper.impl"
+							 targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
 
-	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://60.206.137.209:3306/domyshop"
-			userId="root" password="hiveview" />
-	
-	<!-- 实体类 -->
-    <javaModelGenerator targetPackage="com.hiveview.entity" targetProject="domyshop-entity">
-      <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
-      <property name="rootClass" value="com.hiveview.entity.BaseEntity"/>
-    </javaModelGenerator>
-	
-	<!-- sql文件 -->
-	<sqlMapGenerator targetPackage="mapper" targetProject="domyshop-services/src/main/resources" />
-   		
-   	<!-- mapper层 -->
-	<javaClientGenerator type="XMLMAPPER" targetPackage="com.hiveview.services.dao"
-     	targetProject="domyshop-services" interfaceExtendSupInterface="com.hiveview.core.dao.CrudMapper"
-     	mapperScanAnnotation="com.hiveview.core.mybatis.annotation.MyBatisDao" >
-    </javaClientGenerator>
-	
-	<!-- service -->
-	<javaServiceGenerator targetPackage="com.hiveview.services.service"
-		targetProject="domyshop-services" interfaceExtendSupInterface="com.hiveview.core.service.BaseCrudService"
-		extendSupClass="com.hiveview.core.service.impl.BaseCrudServiceImpl" /> 
-	
-    <tableSetting isSchema="true" enableCountByExample="false"
-		enableUpdateByExample="false" enableDeleteByExample="false"
-		enableSelectByExample="false" selectByExampleQueryId="false">
-		<prop name="replaceTablePrefix">
-			<list>
-				<prefix name="" value="" />
-			</list>
-		</prop>
-		<!-- 忽略schema，避免在xml中出现schema.表名 -->
-		<prop name="ignoreGeneratorSchema" value="true" />
-	</tableSetting>
-  </context>
+		<!-- 要生成哪些表 -->
+		<table tableName="user" domainObjectName="User"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+		<table tableName="role" domainObjectName="Role"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+		<table tableName="user_role" domainObjectName="UserRole"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+		<table tableName="permission" domainObjectName="Permission"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+		<table tableName="role_permission" domainObjectName="RolePermission"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
 
+
+	</context>
 </generatorConfiguration>

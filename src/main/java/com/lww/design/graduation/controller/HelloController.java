@@ -1,7 +1,7 @@
 package com.lww.design.graduation.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.lww.design.graduation.entity.po.TestA;
+import com.lww.design.graduation.entity.po.user.TestA;
 import com.lww.design.graduation.service.test.TestAService;
 import com.lww.design.graduation.utils.RedisUtil;
 import org.slf4j.Logger;

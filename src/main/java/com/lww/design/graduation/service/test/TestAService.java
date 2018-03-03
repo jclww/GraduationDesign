@@ -1,7 +1,7 @@
 package com.lww.design.graduation.service.test;
 
 
-import com.lww.design.graduation.entity.po.TestA;
+import com.lww.design.graduation.entity.po.user.TestA;
 
 import java.util.List;
 

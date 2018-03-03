@@ -4,7 +4,7 @@ package com.lww.design.graduation.utils.bean.shiro;
 import com.lww.design.graduation.entity.po.permission.Permission;
 import com.lww.design.graduation.entity.po.permission.Role;
 import com.lww.design.graduation.entity.po.permission.User;
-import com.lww.design.graduation.entity.vo.permission.UserPermissionVO;
+import com.lww.design.graduation.entity.vo.permission.PermissionVO;
 import com.lww.design.graduation.service.permission.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
@@ -51,7 +51,7 @@ public class ShiroRealm extends AuthorizingRealm {
         //保存权限
         List<String> permissions = new ArrayList<>();
         //拿到当前登陆的用户
-        UserPermissionVO user = userService.getUserPermissionById(userName);
+        PermissionVO user = userService.getUserPermissionById(userName);
         if (user != null) {
             List<Role> userRoleList = user.getRoleList();
             if (!CollectionUtils.isEmpty(userRoleList)) {
