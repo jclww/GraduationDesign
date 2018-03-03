@@ -1,22 +1,24 @@
 package com.lww.design.graduation.utils.bean;
 
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
 
 import java.nio.charset.Charset;
 
+@Slf4j
 public class FastJsonRedisSerializer implements RedisSerializer<Object> {
 
     private static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
-    private Object clazz;
+    private Charset charset;
 
     public FastJsonRedisSerializer() {
-        this(new String());
+        this(DEFAULT_CHARSET);
     }
-    FastJsonRedisSerializer(Object clazz) {
-        this.clazz = clazz;
+    FastJsonRedisSerializer(Charset charset) {
+        this.charset = charset;
     }
 
     @Override
@@ -24,6 +26,7 @@ public class FastJsonRedisSerializer implements RedisSerializer<Object> {
         if (t == null) {
             return new byte[0];
         }
+        log.info("session insert {}", JSON.toJSONString(t));
         return JSON.toJSONString(t).getBytes(DEFAULT_CHARSET);
     }
 
@@ -33,6 +36,6 @@ public class FastJsonRedisSerializer implements RedisSerializer<Object> {
             return null;
         }
         String str = new String(bytes, DEFAULT_CHARSET);
-        return JSON.parseObject(str, clazz.getClass());
+        return JSON.parseObject(str);
     }
 }

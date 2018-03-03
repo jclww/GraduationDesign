@@ -34,6 +34,7 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
         if (session == null || session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY) == null) {
             session = this.doReadSession(sessionId);
             if (session == null) {
+                log.info("There is no session with id [" + sessionId + "]");
                 throw new UnknownSessionException("There is no session with id [" + sessionId + "]");
             } else {
                 // 缓存

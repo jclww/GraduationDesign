@@ -56,15 +56,18 @@
             <!--<bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>-->
         <!--</property>-->
 
+        <!--<property name="valueSerializer" >-->
+            <!--<bean class="com.lww.design.graduation.utils.bean.FastJsonRedisSerializer" />-->
+        <!--</property>-->
         <property name="valueSerializer" >
-            <bean class="com.lww.design.graduation.utils.bean.FastJsonRedisSerializer" />
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
         </property>
-        <property name="hashKeySerializer">
-            <bean class="com.lww.design.graduation.utils.bean.FastJsonRedisSerializer" />
-        </property>
-        <property name="hashValueSerializer">
-            <bean class="com.lww.design.graduation.utils.bean.FastJsonRedisSerializer" />
-        </property>
+        <!--<property name="hashKeySerializer">-->
+            <!--<bean class="com.lww.design.graduation.utils.bean.FastJsonRedisSerializer" />-->
+        <!--</property>-->
+        <!--<property name="hashValueSerializer">-->
+            <!--<bean class="com.lww.design.graduation.utils.bean.FastJsonRedisSerializer" />-->
+        <!--</property>-->
         <!--开启事务  -->
         <property name="enableTransactionSupport" value="true"></property>
     </bean>

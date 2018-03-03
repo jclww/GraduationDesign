@@ -10,7 +10,12 @@
         <property name="loginUrl" value="/login.action" />
         <!--认证成功统一跳转到first.actio，建议不配置，不配置的话shiro认证成功会自动到上一个请求路径-->
         <property name="successUrl" value="/first.action"/>
-        <property name="unauthorizedUrl" value="/refuse.jsp" />
+
+        <property name="filters">
+            <map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+            </map>
+        </property>
         <!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
         <property name="filterChainDefinitions">
             <value>
@@ -102,6 +107,9 @@
     </bean>
 
     <!--自定义realm-->
-    <bean id="shiroRealm" class="com.lww.design.graduation.common.shiro.ShiroRealm"/>
+    <bean id="shiroRealm" class="com.lww.design.graduation.common.shiro.ShiroRealm">
+        <property name="credentialsMatcher" ref="customCredentialsMatcher"/>
+
+    </bean>
 
 </beans>
