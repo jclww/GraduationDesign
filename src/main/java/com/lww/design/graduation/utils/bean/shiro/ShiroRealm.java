@@ -95,6 +95,16 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken) throws AuthenticationException {
+//        UsernamePasswordToken token = (UsernamePasswordToken) authToken;
+//        DomyAdmin user=null;
+//        try {
+//            user=getSystemService().loginAndReturnUser(token.getUsername(), String.valueOf(token.getPassword()));
+//        } catch (RuntimeException e) {
+//            throw new AuthenticationException("msg:"+e.getMessage());
+//        }
+//        return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
+
+
         org.apache.shiro.authc.UsernamePasswordToken token = (UsernamePasswordToken) authToken;
         User user = userService.getById(token.getUsername());
         if (user != null) {

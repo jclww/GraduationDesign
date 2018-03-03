@@ -11,19 +11,19 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-    <link rel="stylesheet" href="AmazeUI-2.4.2/assets/css/amazeui.css"/>
-    <link href="css/basecss/dlstyle.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../AmazeUI-2.4.2/assets/css/amazeui.css"/>
+    <link href="../css/basecss/dlstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
 <div class="login-boxtitle">
-    <a href="home.html"><img alt="logo" src="img/baseimages/logobig.png"/></a>
+    <a href="home.html"><img alt="logo" src="../img/baseimages/logobig.png"/></a>
 </div>
 
 <div class="login-banner">
     <div class="login-main">
-        <div class="login-banner-bg"><span></span><img src="img/baseimages/big.jpg"/></div>
+        <div class="login-banner-bg"><span></span><img src="../img/baseimages/big.jpg"/></div>
         <div class="login-box">
 
             <h3 class="title">登录商城</h3>
@@ -31,7 +31,7 @@
             <div class="clear"></div>
 
             <div class="login-form">
-                <form action="/login">
+                <form name="login" method="post" action="/doLogin">
                     <div class="user-name">
                         <label for="user"><i class="am-icon-user"></i></label>
                         <input type="text" name="username" id="user" placeholder="邮箱/手机/用户名">
@@ -50,7 +50,7 @@
                 <br/>
             </div>
             <div class="am-cf">
-                <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+                <input type="submit" name="login" value="登 录" class="am-btn am-btn-primary am-btn-sm">
             </div>
             <!--<div class="partner">		-->
             <!--<h3>合作账号</h3>-->
@@ -88,5 +88,13 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="../js/basejs/jquery-1.7.2.min.js"></script>
 
+<script type="text/javascript">
+    $(":submit").click(function(){
+        var name = this.name;
+        var filter ="[name='" + name + "']";
+        var item = $("form").filter(filter).eq(0);
+        item.submit();
+    }); </script>
 </html>
