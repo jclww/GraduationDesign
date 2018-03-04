@@ -29,4 +29,10 @@ public class LoginController {
 //        return "redirect:/login.html";
         return new ModelAndView("redirect:/html/login.html");
     }
+
+    @RequestMapping(value="dispartcher",method= RequestMethod.GET)
+    public ModelAndView dispartcher(ModelMap model, HttpServletRequest request) {
+        // TODO 需要判断是管理员 还是用户 现在直接是用户了
+        return new ModelAndView("redirect:/person");
+    }
 }

@@ -36,8 +36,16 @@ public class AppConstant {
      */
     public static final String FILE_UPLOAD_PATH = "/data/uploadFile/";
 
+    public static final String AVATAR_UPLOAD_PATH = "/data/uploadFile/image/avatar/";
+
     /**
      * 帐号key
      */
     public static final String USER_ACCOUNT_KEY = "user:account_id";
+
+    public static final String PNG_SUFFIX = ".png";
+    public static final String JPG_SUFFIX = ".jpg";
+
+
+
 }

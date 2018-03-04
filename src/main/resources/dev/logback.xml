@@ -117,9 +117,11 @@
     <!--<logger name="com.lww" additivity="true" level="INFO">-->
     <!--</logger>-->
 
-    <!--<logger name="com.lww.design.graduation" additivity="true" level="ERROR">-->
+    <logger name="com.lww.design.graduation" additivity="true" level="ERROR">
         <!--<appender-ref ref="error"/>-->
-    <!--</logger>-->
+        <appender-ref ref="STDOUT"/>
+
+    </logger>
 
     <logger name="druid.sql.Statement" additivity="false">
         <level value="DEBUG"/>
