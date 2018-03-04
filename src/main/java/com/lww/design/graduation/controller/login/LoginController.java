@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class LoginController {
 
-    @RequestMapping(value="doLogin",method= RequestMethod.POST)
+    @RequestMapping(value="login",method= RequestMethod.POST)
     public String login(ModelMap model, HttpServletRequest request) {
         Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()) {
             return "redirect:/index";
         }
         log.info("login");
-        return "redirect:/index";
+        return "redirect:/login";
     }
     @RequestMapping(value="login",method= RequestMethod.GET)
     public ModelAndView redirectLogin(ModelMap model, HttpServletRequest request) {

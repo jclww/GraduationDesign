@@ -1,5 +1,6 @@
 package com.lww.design.graduation.mapper;
 
+
 import com.lww.design.graduation.entity.po.user.User;
 
 public interface UserMapper {
@@ -10,6 +11,8 @@ public interface UserMapper {
     int insertSelective(User record);
 
     User selectByPrimaryKey(Long id);
+
+    User selectByAccountId(Long account);
 
     int updateByPrimaryKeySelective(User record);
 

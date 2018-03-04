@@ -1,10 +1,11 @@
 package com.lww.design.graduation.service.permission;
 
-import com.lww.design.graduation.entity.po.permission.User;
-import com.lww.design.graduation.entity.vo.permission.PermissionVO;
+import com.lww.design.graduation.entity.vo.shiro.ShiroUserVO;
 
 public interface UserService {
-    User getById(String username);
+    ShiroUserVO getById(String username);
 
-    PermissionVO getUserPermissionById(String userName);
+    ShiroUserVO getByAccount(Long account);
+
+    ShiroUserVO getUserPermissionById(String userName);
 }

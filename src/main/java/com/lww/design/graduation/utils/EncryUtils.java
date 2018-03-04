@@ -1,5 +1,6 @@
 package com.lww.design.graduation.utils;
 
+import com.lww.design.graduation.common.AppConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ public class EncryUtils {
     public static final int SALT_SIZE = 8;
 
     public static void main(String[] args) {
-        System.out.println(getMd5("p14080415583262231871fa18f49742f95295ef7fe5d3550"));
+        System.out.println(encryPwd("123456"));
 //		System.out.println(encryPwd("hiveview"));
     }
 
@@ -31,7 +32,7 @@ public class EncryUtils {
      * @return
      */
     public static String encryPwd(String password){
-        return getMd5(getSha1(password));
+        return getMd5(getSha1(password+ AppConstant.PWD_ENCRY_SUFFIX));
     }
 
 

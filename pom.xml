@@ -40,6 +40,7 @@
     <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
     <guava.version>24.0-jre</guava.version>
     <swagger2.version>2.7.0</swagger2.version>
+    <orika.version>1.5.1</orika.version>
 
 
 
@@ -49,6 +50,27 @@
     <war.version>2.6</war.version>
   </properties>
   <dependencies>
+
+    <dependency>
+      <groupId>ma.glasnost.orika</groupId>
+      <artifactId>orika-core</artifactId>
+      <version>${orika.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
     <!-- servlet******Begin -->
     <dependency>
       <groupId>javax.servlet</groupId>

@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="account" property="account" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="passWord" jdbcType="CHAR" />
     <result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="CHAR" />
@@ -16,7 +17,7 @@
     <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, account, name, alias_name, email, phone, status, last_login_at, avatar_url, created_at, 
+    id, account, name, password, alias_name, email, phone, status, last_login_at, avatar_url, created_at,
     modified_at, deleted_at
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -24,7 +25,19 @@
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=BIGINT}
+    limit 1
   </select>
+
+  <select id="selectByAccountId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where account = #{account,jdbcType=BIGINT}
+    limit 1
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user
     where id = #{id,jdbcType=BIGINT}

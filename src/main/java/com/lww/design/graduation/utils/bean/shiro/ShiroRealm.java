@@ -1,12 +1,13 @@
 package com.lww.design.graduation.utils.bean.shiro;
 
 
-import com.lww.design.graduation.entity.po.permission.Permission;
-import com.lww.design.graduation.entity.po.permission.Role;
-import com.lww.design.graduation.entity.po.permission.User;
-import com.lww.design.graduation.entity.vo.permission.PermissionVO;
+import com.google.common.base.Strings;
+import com.lww.design.graduation.entity.vo.shiro.ShiroPermissionVO;
+import com.lww.design.graduation.entity.vo.shiro.ShiroRoleVO;
+import com.lww.design.graduation.entity.vo.shiro.ShiroUserVO;
 import com.lww.design.graduation.service.permission.UserService;
 import lombok.extern.slf4j.Slf4j;
+import ma.glasnost.orika.impl.util.StringUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
@@ -15,6 +16,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
+import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -51,17 +53,17 @@ public class ShiroRealm extends AuthorizingRealm {
         //保存权限
         List<String> permissions = new ArrayList<>();
         //拿到当前登陆的用户
-        PermissionVO user = userService.getUserPermissionById(userName);
+        ShiroUserVO user = userService.getUserPermissionById(userName);
         if (user != null) {
-            List<Role> userRoleList = user.getRoleList();
+            List<ShiroRoleVO> userRoleList = user.getRoleVOList();
             if (!CollectionUtils.isEmpty(userRoleList)) {
-                for (Role role : userRoleList) {
+                for (ShiroRoleVO role : userRoleList) {
                     roles.add(role.getName());
-                    List<Permission> rolePermissionList = role.getPermissionList();
+                    List<ShiroPermissionVO> rolePermissionList = role.getPermissionVOList();
                     if (CollectionUtils.isEmpty(rolePermissionList)) {
                         permissions.addAll(
                                 rolePermissionList.stream()
-                                        .map(Permission::getPermission)
+                                        .map(ShiroPermissionVO::getSn)
                                         .collect(Collectors.toList()
                                         )
                         );
@@ -105,8 +107,12 @@ public class ShiroRealm extends AuthorizingRealm {
 //        return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
 
 
-        org.apache.shiro.authc.UsernamePasswordToken token = (UsernamePasswordToken) authToken;
-        User user = userService.getById(token.getUsername());
+        UsernamePasswordToken token = (UsernamePasswordToken) authToken;
+//        ShiroUserVO user = userService.getById(token.getUsername());
+
+        // TODO 需要支持邮箱 / 用户名 / 帐号登录
+        ShiroUserVO user = userService.getByAccount(Long.valueOf(token.getUsername()));
+        log.info("user:{}",user.toString());
         if (user != null) {
             return new SimpleAuthenticationInfo(
                     user.getUserName(), user.getPassWord(), user.toString()

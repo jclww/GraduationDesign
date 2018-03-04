@@ -12,6 +12,8 @@ public class User {
 
     private String name;
 
+    private String passWord;
+
     private String aliasName;
 
     private String email;
