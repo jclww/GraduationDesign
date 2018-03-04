@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
 
     @RequestMapping(value="login",method= RequestMethod.POST)
-    public String login(ModelMap model, HttpServletRequest request) {
+    public ModelAndView login(ModelMap model, HttpServletRequest request) {
         Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()) {
-            return "redirect:/index";
+            return new ModelAndView("redirect:/dispartcher");
         }
         log.info("login");
-        return "redirect:/login";
+        return new ModelAndView("redirect:/login");
     }
     @RequestMapping(value="login",method= RequestMethod.GET)
     public ModelAndView redirectLogin(ModelMap model, HttpServletRequest request) {

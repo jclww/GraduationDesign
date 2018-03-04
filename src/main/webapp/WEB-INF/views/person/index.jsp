@@ -192,18 +192,18 @@
                             <i class="s-icon"></i>我的订单
                             <a class="i-load-more-item-shadow" href="order.html">全部订单</a>
                         </div>
-                        <ul>
-                            <li><a href="order.html"><i><img src="../img/baseimages/pay.png"/></i><span>待付款</span></a>
-                            </li>
-                            <li><a href="order.html"><i><img src="../img/baseimages/send.png"/></i><span>待发货<em
-                                    class="m-num">1</em></span></a></li>
-                            <li><a href="order.html"><i><img
-                                    src="../img/baseimages/receive.png"/></i><span>待收货</span></a></li>
-                            <li><a href="order.html"><i><img src="../img/baseimages/comment.png"/></i><span>待评价<em
-                                    class="m-num">3</em></span></a></li>
-                            <li><a href="change.html"><i><img
-                                    src="../img/baseimages/refund.png"/></i><span>退换货</span></a></li>
-                        </ul>
+                        <%--<ul>--%>
+                            <%--<li><a href="order.html"><i><img src="../img/baseimages/pay.png"/></i><span>待付款</span></a>--%>
+                            <%--</li>--%>
+                            <%--<li><a href="order.html"><i><img src="../img/baseimages/send.png"/></i><span>待发货<em--%>
+                                    <%--class="m-num">1</em></span></a></li>--%>
+                            <%--<li><a href="order.html"><i><img--%>
+                                    <%--src="../img/baseimages/receive.png"/></i><span>待收货</span></a></li>--%>
+                            <%--<li><a href="order.html"><i><img src="../img/baseimages/comment.png"/></i><span>待评价<em--%>
+                                    <%--class="m-num">3</em></span></a></li>--%>
+                            <%--<li><a href="change.html"><i><img--%>
+                                    <%--src="../img/baseimages/refund.png"/></i><span>退换货</span></a></li>--%>
+                        <%--</ul>--%>
                         <div class="orderContentBox">
                             <div class="orderContent">
                                 <div class="orderContentpic">
