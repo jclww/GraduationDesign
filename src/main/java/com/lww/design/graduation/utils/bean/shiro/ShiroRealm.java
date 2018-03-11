@@ -97,26 +97,12 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken) throws AuthenticationException {
-//        UsernamePasswordToken token = (UsernamePasswordToken) authToken;
-//        DomyAdmin user=null;
-//        try {
-//            user=getSystemService().loginAndReturnUser(token.getUsername(), String.valueOf(token.getPassword()));
-//        } catch (RuntimeException e) {
-//            throw new AuthenticationException("msg:"+e.getMessage());
-//        }
-//        return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
-
-
         UsernamePasswordToken token = (UsernamePasswordToken) authToken;
-//        ShiroUserVO user = userService.getById(token.getUsername());
-
         // TODO 需要支持邮箱 / 用户名 / 帐号登录
         ShiroUserVO user = userService.getByAccount(Long.valueOf(token.getUsername()));
         log.info("user:{}",user.toString());
         if (user != null) {
-            return new SimpleAuthenticationInfo(
-                    user.getUserName(), user.getPassWord(), user.toString()
-            );
+            return new SimpleAuthenticationInfo(user, user.getPassWord(), user.toString());
         } else {
             return null;
         }

@@ -1,4 +1,9 @@
+<%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
@@ -24,11 +29,11 @@
                 <ul class="message-l">
                     <div class="topMessage">
                         <%--<div class="member-logout menu-hd">--%>
-                            <%--<a href="#" target="_top" class="h">亲，请登录</a>--%>
-                            <%--<a href="#" target="_top">免费注册</a>--%>
+                        <%--<a href="#" target="_top" class="h">亲，请登录</a>--%>
+                        <%--<a href="#" target="_top">免费注册</a>--%>
                         <%--</div>--%>
                         <div class="member-login">
-                            欢迎您,xxx
+                            欢迎您,${userName}
                         </div>
                     </div>
                 </ul>
@@ -87,8 +92,8 @@
             <%--<li class="qc last"><a href="#">大包装</a></li>--%>
         </ul>
         <%--<div class="nav-extra">--%>
-            <%--<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利--%>
-            <%--<i class="am-icon-angle-right" style="padding-left: 10px;"></i>--%>
+        <%--<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利--%>
+        <%--<i class="am-icon-angle-right" style="padding-left: 10px;"></i>--%>
         <%--</div>--%>
     </div>
 </div>
@@ -107,11 +112,11 @@
                             </a>
                             <div class="m-baseinfo">
                                 <a class="m-pic" href="information.html">
-                                    <img src="../img/baseimages/getAvatar.do.jpg">
+                                    <img src="${avatar}">
                                     <%--<img src="/image/avatar/new4.png">--%>
                                 </a>
                                 <div class="m-info">
-                                    <em class="s-name">小叮当</em>
+                                    <em class="s-name">${nickName}</em>
                                     <div class="vip1"><a href="#"><span></span><em>会员专享</em></a></div>
                                     <div class="safeText"><a href="safety.html">账户安全:<em
                                             style="margin-left:20px ;">60</em>分</a>
@@ -193,16 +198,16 @@
                             <a class="i-load-more-item-shadow" href="order.html">全部订单</a>
                         </div>
                         <%--<ul>--%>
-                            <%--<li><a href="order.html"><i><img src="../img/baseimages/pay.png"/></i><span>待付款</span></a>--%>
-                            <%--</li>--%>
-                            <%--<li><a href="order.html"><i><img src="../img/baseimages/send.png"/></i><span>待发货<em--%>
-                                    <%--class="m-num">1</em></span></a></li>--%>
-                            <%--<li><a href="order.html"><i><img--%>
-                                    <%--src="../img/baseimages/receive.png"/></i><span>待收货</span></a></li>--%>
-                            <%--<li><a href="order.html"><i><img src="../img/baseimages/comment.png"/></i><span>待评价<em--%>
-                                    <%--class="m-num">3</em></span></a></li>--%>
-                            <%--<li><a href="change.html"><i><img--%>
-                                    <%--src="../img/baseimages/refund.png"/></i><span>退换货</span></a></li>--%>
+                        <%--<li><a href="order.html"><i><img src="../img/baseimages/pay.png"/></i><span>待付款</span></a>--%>
+                        <%--</li>--%>
+                        <%--<li><a href="order.html"><i><img src="../img/baseimages/send.png"/></i><span>待发货<em--%>
+                        <%--class="m-num">1</em></span></a></li>--%>
+                        <%--<li><a href="order.html"><i><img--%>
+                        <%--src="../img/baseimages/receive.png"/></i><span>待收货</span></a></li>--%>
+                        <%--<li><a href="order.html"><i><img src="../img/baseimages/comment.png"/></i><span>待评价<em--%>
+                        <%--class="m-num">3</em></span></a></li>--%>
+                        <%--<li><a href="change.html"><i><img--%>
+                        <%--src="../img/baseimages/refund.png"/></i><span>退换货</span></a></li>--%>
                         <%--</ul>--%>
                         <div class="orderContentBox">
                             <div class="orderContent">
@@ -521,7 +526,7 @@
             <li class="person">
                 <p><i class="am-icon-newspaper-o"></i>个人资料</p>
                 <ul>
-                    <li><a href="information.html">个人信息</a></li>
+                    <li><a href="/person/information">个人信息</a></li>
                     <li><a href="safety.html">安全设置</a></li>
                     <li><a href="address.html">地址管理</a></li>
                     <li><a href="cardlist.html">快捷支付</a></li>

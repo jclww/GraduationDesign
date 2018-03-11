@@ -39,7 +39,6 @@ public class OrikaBeanUtil {
         mapperFactory.getConverterFactory().registerConverter("stringToLongConverter", new DateAndTimeConverters.StringToLongConverter());
 
         mapperFactory.classMap(User.class, ShiroUserVO.class)
-                .field("account", "userName")
                 .byDefault().register();
 
         mapperFacade = mapperFactory.getMapperFacade();

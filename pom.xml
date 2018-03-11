@@ -27,6 +27,7 @@
     <slf4j.version>1.7.25</slf4j.version>
     <druid.version>1.1.4</druid.version>
     <servlet.version>2.5</servlet.version>
+    <jstl.version>1.2</jstl.version>
     <!-- jedis版本号 -->
     <jedis.version>2.9.0</jedis.version>
     <spring-redis.version>1.6.0.RELEASE</spring-redis.version>
@@ -86,7 +87,11 @@
       <scope>provided</scope>
     </dependency>
     <!-- servlet******Begin -->
-
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>${jstl.version}</version>
+    </dependency>
     <!-- druid******Begin -->
     <dependency>
       <groupId>com.alibaba</groupId>

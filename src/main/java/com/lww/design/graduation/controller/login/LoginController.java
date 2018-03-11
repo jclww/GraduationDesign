@@ -1,8 +1,13 @@
 package com.lww.design.graduation.controller.login;
 
+import com.lww.design.graduation.entity.vo.shiro.ShiroUserVO;
+import com.lww.design.graduation.utils.bean.shiro.FormAuthenticationFilter;
+import com.lww.design.graduation.utils.bean.shiro.ShiroSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +30,7 @@ public class LoginController {
         return new ModelAndView("redirect:/login");
     }
     @RequestMapping(value="login",method= RequestMethod.GET)
-    public ModelAndView redirectLogin(ModelMap model, HttpServletRequest request) {
+    public ModelAndView redirectLogin() {
 //        return "redirect:/login.html";
         return new ModelAndView("redirect:/html/login.html");
     }

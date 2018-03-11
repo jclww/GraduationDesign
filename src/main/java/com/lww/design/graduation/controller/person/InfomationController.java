@@ -14,16 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Slf4j
-@RequestMapping(value="person",method= RequestMethod.GET)
-public class PersonController {
+
+public class InfomationController {
     @RequestMapping(value="information",method= RequestMethod.GET)
-    public ModelAndView information(ModelMap model, HttpServletRequest request) {
+    public ModelAndView personIndex(ModelMap model, HttpServletRequest request) {
         Subject subject = SecurityUtils.getSubject();
         ShiroUserVO shiroUserVO = (ShiroUserVO)subject.getPrincipal();
-        log.info("login user:{}", shiroUserVO);
-        model.addAttribute("userName", shiroUserVO.getName());
-        model.addAttribute("avatar", shiroUserVO.getAvatarUrl());
-        model.addAttribute("nickName", shiroUserVO.getAliasName());
+        model.addAttribute("user", shiroUserVO);
         return new ModelAndView("person/information", model);
     }
 

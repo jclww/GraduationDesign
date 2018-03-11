@@ -9,9 +9,18 @@ import java.util.List;
 public class ShiroUserVO{
     private static final long serialVersionUID = 1L;
 
-    private String userName;
+    private Long account;
+
+    private String name;
 
     private String passWord;
 
+    private String aliasName;
+
+    private String email;
+
+    private String phone;
+
+    private String avatarUrl;
     private List<ShiroRoleVO> roleVOList;
 }
