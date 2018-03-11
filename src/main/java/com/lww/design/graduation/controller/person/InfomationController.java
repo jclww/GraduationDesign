@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Slf4j
-
+@RequestMapping(value="person",method= RequestMethod.GET)
 public class InfomationController {
     @RequestMapping(value="information",method= RequestMethod.GET)
     public ModelAndView personIndex(ModelMap model, HttpServletRequest request) {
