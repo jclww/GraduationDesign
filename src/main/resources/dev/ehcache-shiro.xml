@@ -20,7 +20,7 @@
     <defaultCache
             maxElementsInMemory="10000"
             eternal="false"
-            timeToLiveSeconds="60"
+            timeToLiveSeconds="1800"
             overflowToDisk="false"
             diskPersistent="false"
             diskExpiryThreadIntervalSeconds="10"

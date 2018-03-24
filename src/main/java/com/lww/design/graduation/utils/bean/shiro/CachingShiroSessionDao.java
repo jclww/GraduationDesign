@@ -36,10 +36,6 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
             if (session == null) {
                 log.info("There is no session with id [" + sessionId + "]");
                 throw new UnknownSessionException("There is no session with id [" + sessionId + "]");
-            } else {
-                // 缓存
-                cache(session, session.getId());
-                log.info("local cache sessionId:{} from redis", sessionId);
             }
         }
         return session;
@@ -64,7 +60,9 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
             if (session != null) {
                 // 重置Redis中缓存过期时间
                 sessionRepository.refreshSession(sessionId);
-                log.info("get session sessionId {} name {} from redis", sessionId, session.getClass().getName());
+                // 缓存
+                cache(session, session.getId());
+                log.info("local cache sessionId:{} from redis", sessionId);
             }
         } catch (Exception e) {
             log.error("get session from redis error", e);

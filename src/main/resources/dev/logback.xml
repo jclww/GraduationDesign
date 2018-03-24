@@ -102,11 +102,11 @@
         <appender-ref ref="threadPool"/>
     </logger>
 
-    <logger name="org.springframework" level="DEBUG"/>
+    <!--<logger name="org.springframework" level="DEBUG"/>-->
 
 
-    <logger name="com.lww.design.graduation" additivity="true" level="INFO">
-    </logger>
+    <!--<logger name="com.lww.design.graduation" additivity="true" level="INFO">-->
+    <!--</logger>-->
 
     <!--打印异常错误日志-->
     <!--LoggerFactory.getLogger(errorLog);-->
@@ -117,24 +117,31 @@
     <!--<logger name="com.lww" additivity="true" level="INFO">-->
     <!--</logger>-->
 
-    <logger name="com.lww.design.graduation" additivity="true" level="ERROR">
-        <!--<appender-ref ref="error"/>-->
-        <appender-ref ref="STDOUT"/>
+    <!--<logger name="com" additivity="false" level="DEBUG">-->
+        <!--&lt;!&ndash;<appender-ref ref="error"/>&ndash;&gt;-->
+        <!--<appender-ref ref="STDOUT"/>-->
 
-    </logger>
+    <!--</logger>-->
 
-    <logger name="druid.sql.Statement" additivity="false">
-        <level value="DEBUG"/>
-        <!--<appender-ref ref="SQL"/>-->
-        <appender-ref ref="STDOUT"/>
-    </logger>
+    <!--<logger name="org" additivity="false" level="DEBUG">-->
+        <!--&lt;!&ndash;<appender-ref ref="error"/>&ndash;&gt;-->
+        <!--<appender-ref ref="STDOUT"/>-->
+
+    <!--</logger>-->
+
+
+    <!--<logger name="druid.sql.Statement" additivity="false">-->
+        <!--<level value="DEBUG"/>-->
+        <!--&lt;!&ndash;<appender-ref ref="SQL"/>&ndash;&gt;-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
     <!-- 日志输出级别 -->
     <!--<root>-->
         <!--<level value="error" />-->
         <!--<level value="info" />-->
         <!--<appender-ref ref="console" />-->
     <!--</root>-->
-    <root level="DEBUG">
+    <root level="ALL">
         <appender-ref ref="STDOUT" />
         <!--<appender-ref ref="fileAppender"/>-->
         <!--<appender-ref ref="error"/>-->
