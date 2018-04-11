@@ -43,8 +43,11 @@ public class AppConstant {
      */
     public static final String USER_ACCOUNT_KEY = "user:account_id";
 
+
+    public static final String GET_AVATAR_PREFIX= "/image/avatar/";
     public static final String PNG_SUFFIX = ".png";
     public static final String JPG_SUFFIX = ".jpg";
+    public static final String JPEG_SUFFIX = ".jpeg";
 
 
 
