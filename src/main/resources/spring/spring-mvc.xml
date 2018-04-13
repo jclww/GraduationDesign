@@ -37,15 +37,43 @@
     </bean>
 
     <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <constructor-arg ref="utf8Charset"/>
+        <mvc:message-converters register-defaults="true">
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                        <value>application/xml;charset=UTF-8</value>
+                    </list>
+                </property>
+                <!--<property name="features">-->
+                    <!--<list>-->
+                        <!--&lt;!&ndash; 默认的意思就是不配置这个属性，配置了就不是默认了 &ndash;&gt;-->
+                        <!--&lt;!&ndash; 是否输出值为null的字段 ，默认是false&ndash;&gt;-->
+
+                        <!--<value>WriteMapNullValue</value>-->
+
+                        <!--<value>WriteNullNumberAsZero</value>-->
+                        <!--<value>WriteNullListAsEmpty</value>-->
+                        <!--<value>WriteNullStringAsEmpty</value>-->
+                        <!--<value>WriteNullBooleanAsFalse</value>-->
+                        <!--<value>WriteDateUseDateFormat</value>-->
+
+                    <!--</list>-->
+                <!--</property>-->
             </bean>
+
+        </mvc:message-converters>
+        <!--<mvc:message-converters>-->
+            <!---->
+            <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+                <!--<constructor-arg ref="utf8Charset"/>-->
+            <!--</bean>-->
             <!--避免IE执行AJAX时,返回JSON出现下载文件 需要添加fastjson依赖，所以放弃（麻烦）-->
             <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
                 <!--<property name="supportedMediaTypes" value="application/json;charset=UTF-8"/>-->
             <!--</bean>-->
-        </mvc:message-converters>
+        <!--</mvc:message-converters>-->
     </mvc:annotation-driven>
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -237,28 +237,28 @@
 
 				</div>
 				<!--底部-->
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有</em>
-						</p>
-					</div>
-				</div>
+				<%--<div class="footer">--%>
+					<%--<div class="footer-hd">--%>
+						<%--<p>--%>
+							<%--<a href="#">恒望科技</a>--%>
+							<%--<b>|</b>--%>
+							<%--<a href="#">商城首页</a>--%>
+							<%--<b>|</b>--%>
+							<%--<a href="#">支付宝</a>--%>
+							<%--<b>|</b>--%>
+							<%--<a href="#">物流</a>--%>
+						<%--</p>--%>
+					<%--</div>--%>
+					<%--<div class="footer-bd">--%>
+						<%--<p>--%>
+							<%--<a href="#">关于恒望</a>--%>
+							<%--<a href="#">合作伙伴</a>--%>
+							<%--<a href="#">联系我们</a>--%>
+							<%--<a href="#">网站地图</a>--%>
+							<%--<em>© 2015-2025 Hengwang.com 版权所有</em>--%>
+						<%--</p>--%>
+					<%--</div>--%>
+				<%--</div>--%>
 			</div>
 
 			<aside class="menu">
@@ -269,18 +269,18 @@
 					<li class="person">
 						<p><i class="am-icon-newspaper-o"></i>个人资料</p>
 						<ul>
-							<li> <a href="information.html">个人信息</a></li>
-							<li> <a href="safety.html">安全设置</a></li>
-							<li> <a href="address.html">地址管理</a></li>
-							<li> <a href="cardlist.html">快捷支付</a></li>
+							<li> <a href="/person/information">个人信息</a></li>
+							<%--<li> <a href="/person/safety.html">安全设置</a></li>--%>
+							<li> <a href="/person/address">地址管理</a></li>
+							<%--<li> <a href="cardlist.html">快捷支付</a></li>--%>
 						</ul>
 					</li>
 					<li class="person">
 						<p><i class="am-icon-balance-scale"></i>我的交易</p>
 						<ul>
-							<li><a href="order.html">订单管理</a></li>
-							<li> <a href="change.html">退款售后</a></li>
-							<li> <a href="comment.html">评价商品</a></li>
+							<li><a href="/person/order">订单管理</a></li>
+							<%--<li> <a href="change.html">退款售后</a></li>--%>
+							<%--<li> <a href="comment.html">评价商品</a></li>--%>
 						</ul>
 					</li>
 					<li class="person">

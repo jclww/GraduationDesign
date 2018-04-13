@@ -169,7 +169,7 @@
 							<div class="add-dress">
 
 								<!--标题 -->
-								<div class="am-cf am-padding">
+								<div id="addressTitle" class="am-cf am-padding">
 									<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> / <small>Add&nbsp;address</small></div>
 								</div>
 								<hr/>
@@ -193,15 +193,15 @@
 										<div class="am-form-group">
 											<label for="user-address" class="am-form-label">所在地</label>
 											<div class="am-form-content address">
-												<select data-am-selected>
+												<select id="province" data-am-selected>
 													<option value="a">浙江省</option>
 													<option value="b" selected>湖北省</option>
 												</select>
-												<select data-am-selected>
+												<select id="city" data-am-selected>
 													<option value="a">温州市</option>
 													<option value="b" selected>武汉市</option>
 												</select>
-												<select data-am-selected>
+												<select id="district" data-am-selected>
 													<option value="a">瑞安区</option>
 													<option value="b" selected>洪山区</option>
 												</select>
@@ -330,4 +330,80 @@
 
 	</body>
 
+	<script type="text/javascript">
+        //获取省、市、区select节点
+        var province = $("#province");
+        var city = $("#city");
+        var district = $("#district");
+        //提前定义动态变量市、区
+        var cities;
+        var districts;
+        //定义省、市下标
+        var p_num;
+        var c_num;
+        //添加省
+        var code = 0;
+        var data = JSON.stringify(code);
+        $.ajax({url:"/common/city",data:data,success:function(result){
+            alert(result)
+//            $("#div1").html(result);
+        }});
+        for (var i = 0; i < provinces.length; i++) {
+            province.append("<option value='value'>" + provinces[i] + "</option>");
+        }
+        //选择省后，添加市（如果点“选择省”，清空市区）（如果没查到对应的市，默认填充为“选择市”）
+        province.change(function () {
+                //先清空市、区
+                city.empty();
+                district.empty();
+                city.append("<option value='value'>选择市</option>");
+                district.append("<option value='value'>选择区</option>");
+                var p = province.find("option:selected").text();
+                var value = province.find("option:selected").val();
+                alert(value);
+                if (p == "选择省") {
+                    city.empty();
+                    city.append("<option value='value'>选择市</option>");
+                } else {
+                    alert(p)
+                    //查找选择的省的下标
+                    for (var i in provinces) {
+                        if (provinces[i] == p) {
+                            p_num = i;
+                        }
+                    }
+                    //网上一堆说eval不行的，不安全的，有很多替代方法的。麻痹找了一顿也没找到，我就用eval了！
+                    //动态查找市的变量名，显示
+                    cities = eval("p" + p_num);
+                    for (var i in cities) {
+                        city.append("<option value='value'>" + cities[i] + "</option>");
+                    }
+                }
+            }
+        );
+        //选择市后，添加区（如果点“选择市”，清空区）（如果没查到对应的区，默认填充为“选择区”）
+        city.change(function () {
+            var c = city.find("option:selected").text();
+            if (c == "选择市") {
+                district.empty();
+                district.append("<option value='value'>选择区</option>");
+            } else if ($.inArray(c, cities)) {
+                //jquery的inarray方法，判断某个元素是不是在数组中
+                district.empty();
+                district.append("<option value='value'>选择区</option>");
+            } else {
+                for (var i in cities) {
+                    if (c == cities[i]) {
+                        c_num = i;
+                    }
+                }
+                //            alert("p" + p_num + "_" + c_num);
+                districts = eval("p" + p_num + "_" + c_num);
+                for (var i in districts) {
+                    district.append("<option value='value'>" + districts[i] + "</option>");
+                }
+            }
+
+        });
+	</script>
 </html>
