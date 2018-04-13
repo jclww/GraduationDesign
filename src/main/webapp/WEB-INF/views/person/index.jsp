@@ -39,7 +39,7 @@
                 </ul>
                 <ul class="message-r">
                     <div class="topMessage home">
-                        <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+                        <div class="menu-hd"><a href="/index" target="_top" class="h">商城首页</a></div>
                     </div>
                     <div class="topMessage my-shangcheng">
                         <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i

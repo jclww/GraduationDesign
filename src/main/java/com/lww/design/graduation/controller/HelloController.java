@@ -1,6 +1,9 @@
 package com.lww.design.graduation.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.lww.design.graduation.entity.po.Category;
+import com.lww.design.graduation.entity.vo.CategoryVO;
+import com.lww.design.graduation.service.category.CategoryService;
 import com.lww.design.graduation.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +30,13 @@ public class HelloController {
     @Resource
     private RedisUtil redisUtil;
 
+    @Resource
+    private CategoryService categoryService;
+    @RequestMapping("/category")
+    @ResponseBody
+    public List<CategoryVO> categoryService() {
+        return categoryService.getAllCategory();
+    }
     @RequestMapping("/hello")
     @ResponseBody
     public String selectByName(ModelMap model, HttpServletRequest hsr) {
