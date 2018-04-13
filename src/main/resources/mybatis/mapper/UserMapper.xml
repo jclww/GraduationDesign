@@ -145,6 +145,9 @@
       <if test="aliasName != null" >
         alias_name = #{aliasName,jdbcType=VARCHAR},
       </if>
+      <if test="passWord != null" >
+        password = #{passWord,jdbcType=CHAR},
+      </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>

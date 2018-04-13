@@ -25,5 +25,11 @@ public class PersonController {
         model.addAttribute("nickName", shiroUserVO.getAliasName());
         return new ModelAndView("person/index", model);
     }
+    @RequestMapping(value="person/logout",method= RequestMethod.GET)
+    public ModelAndView personLogout(ModelMap model, HttpServletRequest request) {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return new ModelAndView("redirect:/html/login.html");
+    }
 
 }

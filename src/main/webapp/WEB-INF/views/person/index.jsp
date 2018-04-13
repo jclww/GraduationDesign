@@ -33,7 +33,7 @@
                         <%--<a href="#" target="_top">免费注册</a>--%>
                         <%--</div>--%>
                         <div class="member-login">
-                            欢迎您,${userName}
+                            欢迎您,${userName},<a href="/person/logout">安全退出</a>
                         </div>
                     </div>
                 </ul>
@@ -529,6 +529,7 @@
                 <ul>
                     <li><a href="/person/information">个人信息</a></li>
                     <%--<li><a href="safety.html">安全设置</a></li>--%>
+                    <li><a href="/person/password">修改密码</a></li>
                     <li><a href="/person/address">地址管理</a></li>
                     <%--<li><a href="cardlist.html">快捷支付</a></li>--%>
                 </ul>

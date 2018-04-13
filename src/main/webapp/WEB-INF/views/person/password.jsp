@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 	<head>
@@ -13,8 +18,10 @@
 		<link href="../css/basecss/personal.css" rel="stylesheet" type="text/css">
 		<link href="../css/basecss/stepstyle.css" rel="stylesheet" type="text/css">
 
-		<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../js/basejs/jquery-1.7.2.min.js"></script>
 		<script src="../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+		<script src="../js/basejs/jquery-form.js"></script>
+
 
 	</head>
 
@@ -28,8 +35,7 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="#" target="_top" class="h">亲，请登录</a>
-									<a href="#" target="_top">免费注册</a>
+									欢迎您,${user.name},<a href="/person/logout">安全退出</a>
 								</div>
 							</div>
 						</ul>
@@ -74,15 +80,15 @@
 					   <div class="nav-cont">
 							<ul>
 								<li class="index"><a href="#">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
-                                <li class="qc"><a href="#">限时抢</a></li>
-                                <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
+                                <%--<li class="qc"><a href="#">闪购</a></li>--%>
+                                <%--<li class="qc"><a href="#">限时抢</a></li>--%>
+                                <%--<li class="qc"><a href="#">团购</a></li>--%>
+                                <%--<li class="qc last"><a href="#">大包装</a></li>--%>
 							</ul>
-						    <div class="nav-extra">
-						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
+						    <%--<div class="nav-extra">--%>
+						    	<%--<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利--%>
+						    	<%--<i class="am-icon-angle-right" style="padding-left: 10px;"></i>--%>
+						    <%--</div>--%>
 						</div>
 			</div>
 			<b class="line"></b>
@@ -113,69 +119,69 @@
 							<div class="u-progress-bar-inner"></div>
 						</div>
 					</div>
-					<form class="am-form am-form-horizontal">
+					<form id="passwordForm" class="am-form am-form-horizontal" method="post" action="/person/password">
 						<div class="am-form-group">
 							<label for="user-old-password" class="am-form-label">原密码</label>
 							<div class="am-form-content">
-								<input type="password" id="user-old-password" placeholder="请输入原登录密码">
+								<input type="password" id="user-old-password" name="oldPsw" placeholder="请输入原登录密码">
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="user-new-password" class="am-form-label">新密码</label>
 							<div class="am-form-content">
-								<input type="password" id="user-new-password" placeholder="由数字、字母组合">
+								<input type="password" id="user-new-password" name="newPsw1" placeholder="由数字、字母组合">
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="user-confirm-password" class="am-form-label">确认密码</label>
 							<div class="am-form-content">
-								<input type="password" id="user-confirm-password" placeholder="请再次输入上面的密码">
+								<input type="password" id="user-confirm-password" name="newPsw2" placeholder="请再次输入上面的密码">
 							</div>
 						</div>
 						<div class="info-btn">
-							<div class="am-btn am-btn-danger">保存修改</div>
+							<div class="am-btn am-btn-danger" onclick="submitForm('#passwordForm')">保存修改</div>
 						</div>
-
 					</form>
 
 				</div>
 				<!--底部-->
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有</em>
-						</p>
-					</div>
-				</div>
+				<%--<div class="footer">--%>
+					<%--<div class="footer-hd">--%>
+						<%--<p>--%>
+							<%--<a href="#">恒望科技</a>--%>
+							<%--<b>|</b>--%>
+							<%--<a href="#">商城首页</a>--%>
+							<%--<b>|</b>--%>
+							<%--<a href="#">支付宝</a>--%>
+							<%--<b>|</b>--%>
+							<%--<a href="#">物流</a>--%>
+						<%--</p>--%>
+					<%--</div>--%>
+					<%--<div class="footer-bd">--%>
+						<%--<p>--%>
+							<%--<a href="#">关于恒望</a>--%>
+							<%--<a href="#">合作伙伴</a>--%>
+							<%--<a href="#">联系我们</a>--%>
+							<%--<a href="#">网站地图</a>--%>
+							<%--<em>© 2015-2025 Hengwang.com 版权所有</em>--%>
+						<%--</p>--%>
+					<%--</div>--%>
+				<%--</div>--%>
 			</div>
 
 			<aside class="menu">
 				<ul>
 					<li class="person active">
-						<a href="index.html"><i class="am-icon-user"></i>个人中心</a>
+						<a href="/person"><i class="am-icon-user"></i>个人中心</a>
 					</li>
 					<li class="person">
 						<p><i class="am-icon-newspaper-o"></i>个人资料</p>
 						<ul>
-							<li> <a href="information.html">个人信息</a></li>
-							<li> <a href="safety.html">安全设置</a></li>
-							<li> <a href="address.html">地址管理</a></li>
-							<li> <a href="cardlist.html">快捷支付</a></li>
+							<li> <a href="/person/information">个人信息</a></li>
+							<li><a href="/person/password">修改密码</a></li>
+							<%--<li> <a href="safety.html">安全设置</a></li>--%>
+							<li> <a href="/person/address">地址管理</a></li>
+							<%--<li> <a href="cardlist.html">快捷支付</a></li>--%>
 						</ul>
 					</li>
 					<li class="person">
@@ -221,4 +227,11 @@
 
 	</body>
 
+	<script type="text/javascript">
+        function submitForm(id) {
+            $(id).ajaxSubmit(function (data) {
+                alert(data)
+            })
+        }
+	</script>
 </html>

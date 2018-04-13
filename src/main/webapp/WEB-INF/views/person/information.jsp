@@ -38,7 +38,7 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									欢迎您,${user.name}
+									欢迎您,${user.name},<a href="/person/logout">安全退出</a>
 								</div>
 							</div>
 						</ul>
@@ -83,15 +83,15 @@
 					   <div class="nav-cont">
 							<ul>
 								<li class="index"><a href="#">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
-                                <li class="qc"><a href="#">限时抢</a></li>
-                                <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
+                                <%--<li class="qc"><a href="#">闪购</a></li>--%>
+                                <%--<li class="qc"><a href="#">限时抢</a></li>--%>
+                                <%--<li class="qc"><a href="#">团购</a></li>--%>
+                                <%--<li class="qc last"><a href="#">大包装</a></li>--%>
 							</ul>
-						    <div class="nav-extra">
-						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
+						    <%--<div class="nav-extra">--%>
+						    	<%--<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利--%>
+						    	<%--<i class="am-icon-angle-right" style="padding-left: 10px;"></i>--%>
+						    <%--</div>--%>
 						</div>
 			</div>
 			<b class="line"></b>
@@ -270,7 +270,8 @@
 						<p><i class="am-icon-newspaper-o"></i>个人资料</p>
 						<ul>
 							<li> <a href="/person/information">个人信息</a></li>
-							<%--<li> <a href="/person/safety.html">安全设置</a></li>--%>
+							<li><a href="/person/password">修改密码</a></li>
+						<%--<li> <a href="/person/safety.html">安全设置</a></li>--%>
 							<li> <a href="/person/address">地址管理</a></li>
 							<%--<li> <a href="cardlist.html">快捷支付</a></li>--%>
 						</ul>
