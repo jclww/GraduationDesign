@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lww.design.graduation.mapper.GoodsImgMapper" >
+  <resultMap id="BaseResultMap" type="com.lww.design.graduation.entity.po.GoodsImg" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="spu_id" property="spuId" jdbcType="BIGINT" />
+    <result column="small_img_url" property="smallImgUrl" jdbcType="VARCHAR" />
+    <result column="mid_img_url" property="midImgUrl" jdbcType="VARCHAR" />
+    <result column="big_img_url" property="bigImgUrl" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, spu_id, small_img_url, mid_img_url, big_img_url, sort
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_img
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_img
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lww.design.graduation.entity.po.GoodsImg" >
+    insert into goods_img (id, spu_id, small_img_url, 
+      mid_img_url, big_img_url, sort
+      )
+    values (#{id,jdbcType=BIGINT}, #{spuId,jdbcType=BIGINT}, #{smallImgUrl,jdbcType=VARCHAR}, 
+      #{midImgUrl,jdbcType=VARCHAR}, #{bigImgUrl,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lww.design.graduation.entity.po.GoodsImg" >
+    insert into goods_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="spuId != null" >
+        spu_id,
+      </if>
+      <if test="smallImgUrl != null" >
+        small_img_url,
+      </if>
+      <if test="midImgUrl != null" >
+        mid_img_url,
+      </if>
+      <if test="bigImgUrl != null" >
+        big_img_url,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="spuId != null" >
+        #{spuId,jdbcType=BIGINT},
+      </if>
+      <if test="smallImgUrl != null" >
+        #{smallImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="midImgUrl != null" >
+        #{midImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImgUrl != null" >
+        #{bigImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lww.design.graduation.entity.po.GoodsImg" >
+    update goods_img
+    <set >
+      <if test="spuId != null" >
+        spu_id = #{spuId,jdbcType=BIGINT},
+      </if>
+      <if test="smallImgUrl != null" >
+        small_img_url = #{smallImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="midImgUrl != null" >
+        mid_img_url = #{midImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImgUrl != null" >
+        big_img_url = #{bigImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lww.design.graduation.entity.po.GoodsImg" >
+    update goods_img
+    set spu_id = #{spuId,jdbcType=BIGINT},
+      small_img_url = #{smallImgUrl,jdbcType=VARCHAR},
+      mid_img_url = #{midImgUrl,jdbcType=VARCHAR},
+      big_img_url = #{bigImgUrl,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

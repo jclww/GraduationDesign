@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lww.design.graduation.mapper.GoodsOptionMapper" >
+  <resultMap id="BaseResultMap" type="com.lww.design.graduation.entity.po.GoodsOption" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+    <result column="attribute_id" property="attributeId" jdbcType="INTEGER" />
+    <result column="option_id" property="optionId" jdbcType="INTEGER" />
+    <result column="attribute_name" property="attributeName" jdbcType="VARCHAR" />
+    <result column="option_name" property="optionName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sku_id, attribute_id, option_id, attribute_name, option_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_option
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_option
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lww.design.graduation.entity.po.GoodsOption" >
+    insert into goods_option (id, sku_id, attribute_id, 
+      option_id, attribute_name, option_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{skuId,jdbcType=BIGINT}, #{attributeId,jdbcType=INTEGER}, 
+      #{optionId,jdbcType=INTEGER}, #{attributeName,jdbcType=VARCHAR}, #{optionName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lww.design.graduation.entity.po.GoodsOption" >
+    insert into goods_option
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="attributeId != null" >
+        attribute_id,
+      </if>
+      <if test="optionId != null" >
+        option_id,
+      </if>
+      <if test="attributeName != null" >
+        attribute_name,
+      </if>
+      <if test="optionName != null" >
+        option_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="attributeId != null" >
+        #{attributeId,jdbcType=INTEGER},
+      </if>
+      <if test="optionId != null" >
+        #{optionId,jdbcType=INTEGER},
+      </if>
+      <if test="attributeName != null" >
+        #{attributeName,jdbcType=VARCHAR},
+      </if>
+      <if test="optionName != null" >
+        #{optionName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lww.design.graduation.entity.po.GoodsOption" >
+    update goods_option
+    <set >
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="attributeId != null" >
+        attribute_id = #{attributeId,jdbcType=INTEGER},
+      </if>
+      <if test="optionId != null" >
+        option_id = #{optionId,jdbcType=INTEGER},
+      </if>
+      <if test="attributeName != null" >
+        attribute_name = #{attributeName,jdbcType=VARCHAR},
+      </if>
+      <if test="optionName != null" >
+        option_name = #{optionName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lww.design.graduation.entity.po.GoodsOption" >
+    update goods_option
+    set sku_id = #{skuId,jdbcType=BIGINT},
+      attribute_id = #{attributeId,jdbcType=INTEGER},
+      option_id = #{optionId,jdbcType=INTEGER},
+      attribute_name = #{attributeName,jdbcType=VARCHAR},
+      option_name = #{optionName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
