@@ -8,10 +8,49 @@ $(function() {
 		p.click(function() {
 			if (!!$(this).hasClass("selected")) {
 				$(this).removeClass("selected");
-
+                var id = "";
+                $("#goodsForm .selected").each(function () {
+                    id += $(this).attr("optionId")+";";
+                })
+                if(id == "") {
+                    return;
+                }
+                id = id.substring(0, id.length-1);
+                $(skuInfo).each(function (index, value) {
+                    if(id == value.id) {
+                        $("#stockNum").text(value.stock);
+                        $("#price").text(value.price);
+                        return false;
+                    }
+                    // alert(index+","+ (skuInfo.length-1))
+                    if (index == (skuInfo.length-1)) {
+                        $("#stockNum").text(" ");
+                        $("#price").text(defaultPrice);
+                    }
+                })
 			} else {
 				$(this).addClass("selected").siblings("li").removeClass("selected");
 
+                var id = "";
+                $("#goodsForm .selected").each(function () {
+                    id += $(this).attr("optionId")+";";
+                })
+                if(id == "") {
+                    return;
+                }
+                id = id.substring(0, id.length-1);
+                $(skuInfo).each(function (index, value) {
+                    if(id == value.id) {
+                        $("#stockNum").text(value.stock);
+                        $("#price").text(value.price);
+                        return false;
+                    }
+                    // alert(index+","+ (skuInfo.length-1))
+                    if (index == (skuInfo.length-1)) {
+                        $("#stockNum").text(" ");
+                        $("#price").text(defaultPrice);
+                    }
+                })
 			}
 
 		})

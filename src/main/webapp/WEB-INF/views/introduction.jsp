@@ -148,11 +148,19 @@
                 <div class="tb-detail-price">
                     <li class="price iteminfo_price">
                         <dt>价格</dt>
-                        <dd><em>¥</em><b class="sys_item_price">
+                        <dd><em>¥</em><b id="price" class="sys_item_price">
                             <c:if test="${spu.priceBottom==spu.priceTop}">${spu.priceBottom}
                             </c:if>
                             <c:if test="${spu.priceBottom!=spu.priceTop}">${spu.priceBottom} ~ ${spu.priceTop}
                             </c:if>
+                            <script type="application/javascript">
+                                <c:if test="${spu.priceBottom==spu.priceTop}">
+                                    var defaultPrice = "${spu.priceBottom}";
+                                </c:if>
+                                <c:if test="${spu.priceBottom!=spu.priceTop}">
+                                    var defaultPrice = "${spu.priceBottom} ~ ${spu.priceTop}";
+                                </c:if>
+                            </script>
                         </b></dd>
                     </li>
                     <div class="clear"></div>
@@ -190,53 +198,80 @@
                                             </ul>
                                         </div>
                                         </c:forEach>
-
+                                        <input id="sku" name="sku" type="hidden">
                                         <div class="theme-options">
                                             <div class="cart-title number">数量</div>
                                         </div>
+                                        <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"/>
+                                        <input id="text_box" name="buyNum" type="text" value="1" style="width:30px;"/>
+                                        <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span id="stock" class="tb-hidden">库存<span id="stockNum" class="stock"> </span></span>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     <dd>
-                        <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"/>
-                        <input id="text_box" name="" type="text" value="1" style="width:30px;"/>
-                        <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span id="stock" class="tb-hidden">库存<span id="stockNum" class="stock">0</span>件</span>
+
                     </dd>
                 </dl>
             </div>
             <div class="clear"></div>
-<script type="application/javascript">
-    var skuInfo = ${skuInfos};
-    var skuInfoStr = JSON.stringify(skuInfo);
-
-    function buyNow() {
-        var id = "";
-        $("#goodsForm .selected").each(function () {
-            id += $(this).attr("optionId")+";";
-        })
-        if(id == "") {
-            alert("请选择规格");
-        }
-        id = id.substring(0, id.length-1);
-        alert(id);
-        $(skuInfo).each(function (index, value) {
-            if(id == value.id) {
-                alert("匹配了");
-            }
-        })
-        alert("现在还不可以买～")
-    }
-    function addCart() {
-        alert("现在还不可以加购物车～")
-    }
-</script>
             <%--<div class="btn-op">--%>
             <%--<div class="btn am-btn am-btn-warning">确认</div>--%>
             <%--<div class="btn close am-btn am-btn-warning">取消</div>--%>
             <%--</div>--%>
+            <script type="application/javascript">
+                var skuInfo = ${skuInfos};
+                var skuInfoStr = JSON.stringify(skuInfo);
+                function buyNow() {
+                    var id = "";
+                    $("#goodsForm .selected").each(function () {
+                        id += $(this).attr("optionId")+";";
+                    })
+                    var stockCount = $("#stockNum").text();
+                    var buyNum = $("#text_box").val();
+                    if(id == "" || stockCount == " ") {
+                        alert("请选择规格");
+                        return;
+                    }
+                    if(stockCount < buyNum) {
+                        alert("少买点～～～");
+                        return;
+                    }
+                    id = id.substring(0, id.length-1);
+                    $(skuInfo).each(function (index, value) {
+                        if(id == value.id) {
+                            $("#goodsForm").attr("action","buy");
+                            $("#sku").val(value.skuId);
+                            $("#goodsForm").submit();
+                        }
+                    })
+                }
+                function addCart() {
+                    var id = "";
+                    $("#goodsForm .selected").each(function () {
+                        id += $(this).attr("optionId")+";";
+                    })
+                    var stockCount = $("#stockNum").text();
+                    var buyNum = $("#text_box").val();
+                    if(id == "" || stockCount == " ") {
+                        alert("请选择规格");
+                        return;
+                    }
+                    if(stockCount < buyNum) {
+                        alert("少添点～～～");
+                        return;
+                    }
+                    id = id.substring(0, id.length-1);
+                    $(skuInfo).each(function (index, value) {
+                        if(id == value.id) {
+                            $("#goodsForm").attr("action","addCart");
+                            $("#sku").val(value.skuId);
+                            $("#goodsForm").submit();
+                        }
+                    })                }
+            </script>
             <div class="pay">
                 <li>
                     <div class="clearfix tb-btn tb-btn-buy theme-login">
