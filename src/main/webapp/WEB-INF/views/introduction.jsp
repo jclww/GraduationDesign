@@ -246,6 +246,9 @@
                             $("#sku").val(value.skuId);
                             $("#goodsForm").submit();
                         }
+                        if (index == (skuInfo.length-1)) {
+                            alert("这类可能没货了～～")
+                        }
                     })
                 }
                 function addCart() {
@@ -270,7 +273,11 @@
                             $("#sku").val(value.skuId);
                             $("#goodsForm").submit();
                         }
-                    })                }
+                        if (index == (skuInfo.length-1)) {
+                            alert("这类可能没货了～～")
+                        }
+                    })
+                }
             </script>
             <div class="pay">
                 <li>
