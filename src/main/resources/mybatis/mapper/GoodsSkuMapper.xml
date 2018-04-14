@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lww.design.graduation.mapper.GoodSkuMapper" >
-  <resultMap id="BaseResultMap" type="com.lww.design.graduation.entity.po.GoodSku" >
+<mapper namespace="com.lww.design.graduation.mapper.GoodsSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.lww.design.graduation.entity.po.GoodsSku" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="spu_id" property="spuId" jdbcType="BIGINT" />
@@ -17,17 +17,23 @@
     from goods_sku
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="getBySpu" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from goods_sku
+    where spu_id = #{spu,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from goods_sku
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.lww.design.graduation.entity.po.GoodSku" >
+  <insert id="insert" parameterType="com.lww.design.graduation.entity.po.GoodsSku" >
     insert into goods_sku (id, name, spu_id, 
       price, stock)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{spuId,jdbcType=BIGINT}, 
       #{price,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.lww.design.graduation.entity.po.GoodSku" >
+  <insert id="insertSelective" parameterType="com.lww.design.graduation.entity.po.GoodsSku" >
     insert into goods_sku
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +70,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lww.design.graduation.entity.po.GoodSku" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lww.design.graduation.entity.po.GoodsSku" >
     update goods_sku
     <set >
       <if test="name != null" >
@@ -82,7 +88,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lww.design.graduation.entity.po.GoodSku" >
+  <update id="updateByPrimaryKey" parameterType="com.lww.design.graduation.entity.po.GoodsSku" >
     update goods_sku
     set name = #{name,jdbcType=VARCHAR},
       spu_id = #{spuId,jdbcType=BIGINT},

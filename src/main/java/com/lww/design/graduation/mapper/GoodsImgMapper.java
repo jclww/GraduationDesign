@@ -2,6 +2,8 @@ package com.lww.design.graduation.mapper;
 
 import com.lww.design.graduation.entity.po.GoodsImg;
 
+import java.util.List;
+
 public interface GoodsImgMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface GoodsImgMapper {
     int updateByPrimaryKeySelective(GoodsImg record);
 
     int updateByPrimaryKey(GoodsImg record);
+
+    List<GoodsImg> getBySpuId(Long spu);
 }
