@@ -18,4 +18,9 @@ public class GoodsImgServiceImpl implements GoodsImgService {
     public List<GoodsImg> getBySpuId(Long spu) {
         return goodsImgMapper.getBySpuId(spu);
     }
+
+    @Override
+    public List<GoodsImg> getBySpuIdList(List<Long> spuList) {
+        return goodsImgMapper.getBySpuIdList(spuList);
+    }
 }

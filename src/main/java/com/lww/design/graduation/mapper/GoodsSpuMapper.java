@@ -17,4 +17,6 @@ public interface GoodsSpuMapper {
     int updateByPrimaryKeySelective(GoodsSpu record);
 
     int updateByPrimaryKey(GoodsSpu record);
+
+    List<GoodsSpu> getByIdList(List<Long> spuList);
 }

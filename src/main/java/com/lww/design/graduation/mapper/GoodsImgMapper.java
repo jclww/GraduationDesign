@@ -18,4 +18,6 @@ public interface GoodsImgMapper {
     int updateByPrimaryKey(GoodsImg record);
 
     List<GoodsImg> getBySpuId(Long spu);
+
+    List<GoodsImg> getBySpuIdList(List<Long> spuList);
 }

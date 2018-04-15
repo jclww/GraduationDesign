@@ -57,4 +57,9 @@ public class GoodsSKUServiceImpl implements GoodsSKUService {
     public List<GoodsSku> getSkuBySpu(Long spu) {
         return goodsSkuMapper.getBySpu(spu);
     }
+
+    @Override
+    public List<GoodsSku> getBySku(List<Long> skuList) {
+        return goodsSkuMapper.getBySku(skuList);
+    }
 }

@@ -40,7 +40,7 @@ public class GoodsItemController {
     private GoodsSKUService goodsSKUService;
 
     @RequestMapping(value="/item/{spu}",method= RequestMethod.GET)
-    public ModelAndView login(@PathVariable(value = "spu") Long spu, ModelMap model) {
+    public ModelAndView getGoodsInfo(@PathVariable(value = "spu") Long spu, ModelMap model) {
         Subject subject = SecurityUtils.getSubject();
         ShiroUserVO shiroUserVO = (ShiroUserVO)subject.getPrincipal();
         log.info("shiroUserVO:{}", JSON.toJSONString(shiroUserVO));

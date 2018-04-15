@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lww.design.graduation.mapper.CartMapper" >
+  <resultMap id="BaseResultMap" type="com.lww.design.graduation.entity.po.Cart" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, sku_id, status, count
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cart
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getByUser" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from cart
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <sql id="SO_Where_Clause">
+    <where>
+      <if test="userId != null">AND user_id = #{userId}</if>
+      <if test="skuId != null">AND sku_id = #{skuId} </if>
+    </where>
+  </sql>
+  <select id="query" parameterType="com.lww.design.graduation.entity.po.Cart" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cart
+    <include refid="SO_Where_Clause"/>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cart
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lww.design.graduation.entity.po.Cart" >
+    insert into cart (id, user_id, sku_id, 
+      status, count)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{skuId,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{count,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lww.design.graduation.entity.po.Cart" >
+    insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lww.design.graduation.entity.po.Cart" >
+    update cart
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lww.design.graduation.entity.po.Cart" >
+    update cart
+    set user_id = #{userId,jdbcType=BIGINT},
+      sku_id = #{skuId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

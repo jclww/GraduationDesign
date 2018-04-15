@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface GoodsImgService {
     List<GoodsImg> getBySpuId(Long spu);
+
+    List<GoodsImg> getBySpuIdList(List<Long> spuList);
 }

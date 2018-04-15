@@ -9,4 +9,6 @@ public interface GoodsSKUService {
     List<GoodsSkuInfoVO> getGoodsSkuInfoBySpuId(Long spu);
 
     List<GoodsSku> getSkuBySpu(Long spu);
+
+    List<GoodsSku> getBySku(List<Long> skuList);
 }

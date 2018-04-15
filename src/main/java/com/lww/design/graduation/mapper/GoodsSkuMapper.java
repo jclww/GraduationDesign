@@ -18,4 +18,6 @@ public interface GoodsSkuMapper {
     int updateByPrimaryKey(GoodsSku record);
 
     List<GoodsSku> getBySpu(Long spu);
+
+    List<GoodsSku> getBySku(List<Long> skuList);
 }

@@ -198,12 +198,12 @@
                                             </ul>
                                         </div>
                                         </c:forEach>
-                                        <input id="sku" name="sku" type="hidden">
+                                        <input id="sku" name="skuId" type="hidden">
                                         <div class="theme-options">
                                             <div class="cart-title number">数量</div>
                                         </div>
                                         <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"/>
-                                        <input id="text_box" name="buyNum" type="text" value="1" style="width:30px;"/>
+                                        <input id="text_box" name="count" type="text" value="1" style="width:30px;"/>
                                         <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <span id="stock" class="tb-hidden">库存<span id="stockNum" class="stock"> </span></span>
@@ -235,16 +235,17 @@
                         alert("请选择规格");
                         return;
                     }
-                    if(stockCount < buyNum) {
+                    if(parseInt(stockCount) < parseInt(buyNum)) {
                         alert("少买点～～～");
                         return;
                     }
                     id = id.substring(0, id.length-1);
                     $(skuInfo).each(function (index, value) {
                         if(id == value.id) {
-                            $("#goodsForm").attr("action","buy");
+                            $("#goodsForm").attr("action","/buy");
                             $("#sku").val(value.skuId);
                             $("#goodsForm").submit();
+                            return false;
                         }
                         if (index == (skuInfo.length-1)) {
                             alert("这类可能没货了～～")
@@ -262,16 +263,17 @@
                         alert("请选择规格");
                         return;
                     }
-                    if(stockCount < buyNum) {
+                    if(parseInt(stockCount) < parseInt(buyNum)) {
                         alert("少添点～～～");
                         return;
                     }
                     id = id.substring(0, id.length-1);
                     $(skuInfo).each(function (index, value) {
                         if(id == value.id) {
-                            $("#goodsForm").attr("action","addCart");
+                            $("#goodsForm").attr("action","/cart");
                             $("#sku").val(value.skuId);
                             $("#goodsForm").submit();
+                            return false;
                         }
                         if (index == (skuInfo.length-1)) {
                             alert("这类可能没货了～～")
