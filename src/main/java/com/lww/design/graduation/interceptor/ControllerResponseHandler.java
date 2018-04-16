@@ -1,6 +1,7 @@
 package com.lww.design.graduation.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
@@ -26,9 +27,10 @@ public class ControllerResponseHandler implements ResponseBodyAdvice {
         attributes.put("code", 400);
         attributes.put("msg", exception.getMessage());
         log.info("exception:{}", exception);
-        view.setAttributesMap(attributes);
-        mav.setView(view);
-        return mav;
+//
+//        view.setAttributesMap(attributes);
+//        mav.setView(view);
+        return new ModelAndView("error", attributes);
     }
 
     @Override
@@ -50,6 +52,6 @@ public class ControllerResponseHandler implements ResponseBodyAdvice {
 //            json.remove("message");
 //            body = json;
 //        }
-        return JSON.parseObject(JSON.toJSONString(body));
+        return body;
     }
 }

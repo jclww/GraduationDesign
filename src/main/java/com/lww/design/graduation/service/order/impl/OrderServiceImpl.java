@@ -57,6 +57,16 @@ public class OrderServiceImpl implements OrderService {
         order.setAddressId(addressId);
         order.setUserId(userId);
         order.setSumPrice(sumPrice);
+        // 校验是否有库存
+        skuList.forEach(sku -> {
+            Optional<SubOrder> subOrder = subOrders.stream().filter(orders -> orders.getSkuId().equals(sku.getId())).findFirst();
+            if (!subOrder.isPresent()) {
+                throw new BizException("error");
+            }
+            if (subOrder.get().getCount() > sku.getStock()) {
+                throw new BizException("您来晚了"+sku.getName()+"库存不足，只有" + sku.getStock());
+            }
+        });
         // 插入订单
         int insertSuccess = orderMapper.insertSelective(order);
         log.info("insertSuccess:{} orderId:{}", insertSuccess, orderId);

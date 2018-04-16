@@ -341,6 +341,19 @@
                                 window.location.href = "/login";
                                 return;
                             }
+                            if (data.indexOf("msg") >= 0) {
+//                                alert($(data))
+                                console.debug();
+                                console.log(data)
+                                console.log($(data))
+                                console.log($(data).find("#msg"))
+                                console.log($(data).find("#mesHtml"))
+//                                alert($(data).html())
+                                console.log($("#orderForm"))
+
+                                alert($(data).text())
+                                return;
+                            }
                             $("#pay").find("#orderId").val(data.substring(1,data.length-1));
                             $('.theme-popover-mask').show();
                             $('.theme-popover-mask').height($(window).height());
