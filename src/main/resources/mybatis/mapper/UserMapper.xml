@@ -41,19 +41,19 @@
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.lww.design.graduation.entity.po.User">
+  <insert id="insert" parameterType="com.lww.design.graduation.entity.po.user.User">
     insert into user (id, account, password, 
       name, alias_name, email, 
       phone, status, money, 
       last_login_at, avatar_url, created_at, 
       modified_at, deleted_at)
-    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=BIGINT}, #{password,jdbcType=CHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=BIGINT}, #{passWord,jdbcType=CHAR},
       #{name,jdbcType=VARCHAR}, #{aliasName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{phone,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
       #{lastLoginAt,jdbcType=TIMESTAMP}, #{avatarUrl,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{modifiedAt,jdbcType=TIMESTAMP}, #{deletedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.lww.design.graduation.entity.po.User">
+  <insert id="insertSelective" parameterType="com.lww.design.graduation.entity.po.user.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -62,7 +62,7 @@
       <if test="account != null">
         account,
       </if>
-      <if test="password != null">
+      <if test="passWord != null">
         password,
       </if>
       <if test="name != null">
@@ -106,8 +106,8 @@
       <if test="account != null">
         #{account,jdbcType=BIGINT},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=CHAR},
+      <if test="passWord != null">
+        #{passWord,jdbcType=CHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -144,14 +144,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lww.design.graduation.entity.po.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.lww.design.graduation.entity.po.user.User">
     update user
     <set>
       <if test="account != null">
         account = #{account,jdbcType=BIGINT},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=CHAR},
+      <if test="passWord != null">
+        password = #{passWord,jdbcType=CHAR},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -189,10 +189,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lww.design.graduation.entity.po.User">
+  <update id="updateByPrimaryKey" parameterType="com.lww.design.graduation.entity.po.user.User">
     update user
     set account = #{account,jdbcType=BIGINT},
-      password = #{password,jdbcType=CHAR},
+      password = #{passWord,jdbcType=CHAR},
       name = #{name,jdbcType=VARCHAR},
       alias_name = #{aliasName,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},

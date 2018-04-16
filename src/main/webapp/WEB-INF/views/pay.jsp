@@ -335,26 +335,17 @@
                         var form = $("#orderForm").html()
                         var addressId = $(".defaultAddr").attr("addressId");
                         $("#address").val(addressId);
+                        var login = "请登录";
                         $("#orderForm").ajaxSubmit(function (data) {
-                            $(".theme-popover").find("#orderId").val(data.substring(1,data.length-1));
+                            if(login == data.substring(1,data.length-1)) {
+                                window.location.href = "/login";
+                                return;
+                            }
+                            $("#pay").find("#orderId").val(data.substring(1,data.length-1));
                             $('.theme-popover-mask').show();
                             $('.theme-popover-mask').height($(window).height());
-                            $('.theme-popover').slideDown(200);
+                            $('#pay').slideDown(200);
                         });
-                        $('.theme-poptit .close,.btn-op .close').click(function() {
-
-                            $(document.body).css("overflow","visible");
-                            $('.theme-login').removeClass("selected");
-                            $('.item-props-can').removeClass("selected");
-                            $('.theme-popover-mask').hide();
-                            $('.theme-popover').slideUp(200);
-                        })
-
-//                        function submitForm(id) {
-//                            $(id).ajaxSubmit(function (data) {
-//                                alert(data)
-//                            })
-//                        }
                     }
                 </script>
                 <div class="clear"></div>
@@ -368,7 +359,7 @@
 
 </div>
 <div class="theme-popover-mask"></div>
-<div class="theme-popover" style="height:150px; margin-bottom:-100px">
+<div id="pay" class="theme-popover" style="height:150px; margin-bottom:-100px">
 
     <!--标题 -->
     <div class="am-cf am-padding">
@@ -379,9 +370,9 @@
     <hr/>
 
     <div class="am-u-md-12">
-        <form id="pay" class="am-form am-form-horizontal" action="/pay" method="post">
+        <form id="payForm" class="am-form am-form-horizontal" action="/pay" method="post">
 
-            <input type="hidden" id="orderId" orderId="" value="">
+            <input type="hidden" id="orderId" orderId="" name="orderId" value="">
             <div class="am-form-group theme-poptit">
                 <div class="am-u-sm-9 am-u-sm-push-3">
                     <div class="am-btn am-btn-danger" onclick="payNow()">支付</div>
@@ -392,15 +383,52 @@
 
         <script type="application/javascript">
             function payNow() {
-                $("#pay").ajaxSubmit(function (data) {
-                    alert(data);
+                $("#payForm").ajaxSubmit(function (data) {
+                    if("请登录" == data.substring(1,data.length-1)) {
+                        window.location.href = "/login";
+                        return;
+                    }
+                    $(document.body).css("overflow","visible");
+                    $('.theme-login').removeClass("selected");
+                    $('.item-props-can').removeClass("selected");
+                    $('.theme-popover-mask').hide();
+                    $('.theme-popover').slideUp(200);
+
+                    $("#payResult").find("#resultMsg").text(data.substring(1,data.length-1));
+                    $('.theme-popover-mask').show();
+                    $('.theme-popover-mask').height($(window).height());
+                    $('#payResult').slideDown(200);
                 })
             }
         </script>
     </div>
-
 </div>
+<div id="payResult" class="theme-popover" style="height:150px; margin-bottom:-100px">
 
+    <!--标题 -->
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">支付结果</strong> /
+            <small>Pay Result</small>
+        </div>
+    </div>
+    <hr/>
+
+    <div class="am-u-md-12">
+        <form id="resultForm" class="am-form am-form-horizontal" action="/person" method="get">
+            <p id="resultMsg">你怎么能看到我？？？？？？</p>
+            <div class="am-form-group theme-poptit">
+                <div class="am-u-sm-9 am-u-sm-push-3">
+                    <div class="am-btn am-btn-danger" onclick="resultSubmit()">我知道了</div>
+                </div>
+            </div>
+        </form>
+        <script type="application/javascript">
+            function resultSubmit() {
+                $("#resultForm").submit();
+            }
+        </script>
+    </div>
+</div>
 <div class="clear"></div>
 </body>
 

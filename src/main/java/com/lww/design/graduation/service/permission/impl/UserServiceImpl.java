@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     private OrikaBeanUtil orikaBeanUtil;
 
     @Override
-    public ShiroUserVO getById(String username) {
-        return null;
+    public User getById(Long userId) {
+        return userMapper.selectByPrimaryKey(userId);
     }
     @Override
     public ShiroUserVO getByAccount(Long account) {
@@ -37,5 +37,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public ShiroUserVO getUserPermissionById(String userName) {
         return null;
+    }
+
+    @Override
+    public Integer updateById(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 }

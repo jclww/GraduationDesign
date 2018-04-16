@@ -31,20 +31,20 @@ public class ClearingGoodsController {
     @Resource
     private ClearingGoodsService clearingGoodsService;
 
-    @RequestMapping(value="/buy",method= RequestMethod.POST)
-    public String createOrder(@RequestBody List<Cart> cartList, ModelMap model) {
-        Subject subject = SecurityUtils.getSubject();
-        ShiroUserVO shiroUserVO = (ShiroUserVO)subject.getPrincipal();
-        log.info("shiroUserVO:{}", JSON.toJSONString(shiroUserVO));
-        if (shiroUserVO == null) {
-            return "/login";
-        }
-//        List<Address> addressList = addressService.getAddressByUserId(shiroUserVO.getId());
-//        model.addAttribute("user", shiroUserVO);
-//        model.addAttribute("addressList", addressList);
-        String json = JSON.toJSONString(cartList);
-        return "/pay?param="+json;
-    }
+//    @RequestMapping(value="/buy",method= RequestMethod.POST)
+//    public String createOrder(@RequestBody List<Cart> cartList, ModelMap model) {
+//        Subject subject = SecurityUtils.getSubject();
+//        ShiroUserVO shiroUserVO = (ShiroUserVO)subject.getPrincipal();
+//        log.info("shiroUserVO:{}", JSON.toJSONString(shiroUserVO));
+//        if (shiroUserVO == null) {
+//            return "/login";
+//        }
+////        List<Address> addressList = addressService.getAddressByUserId(shiroUserVO.getId());
+////        model.addAttribute("user", shiroUserVO);
+////        model.addAttribute("addressList", addressList);
+//        String json = JSON.toJSONString(cartList);
+//        return "/pay?param="+json;
+//    }
 
     @RequestMapping(value="/buy",method= RequestMethod.GET)
     public ModelAndView createOrder(String param, ModelMap model) {

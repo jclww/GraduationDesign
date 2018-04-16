@@ -1,14 +1,17 @@
 package com.lww.design.graduation.service.order.impl;
 
+import com.lww.design.graduation.common.enums.OrderEnums;
 import com.lww.design.graduation.common.exception.BizException;
 import com.lww.design.graduation.entity.po.GoodsSku;
 import com.lww.design.graduation.entity.po.Order;
 import com.lww.design.graduation.entity.po.SubOrder;
+import com.lww.design.graduation.entity.po.user.User;
 import com.lww.design.graduation.mapper.OrderMapper;
 import com.lww.design.graduation.mapper.SubOrderMapper;
 import com.lww.design.graduation.service.cart.ShopCartService;
 import com.lww.design.graduation.service.goods.sku.GoodsSKUService;
 import com.lww.design.graduation.service.order.OrderService;
+import com.lww.design.graduation.service.permission.UserService;
 import com.lww.design.graduation.utils.IdWorker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -31,6 +34,8 @@ public class OrderServiceImpl implements OrderService {
     private GoodsSKUService goodsSKUService;
     @Resource
     private ShopCartService shopCartService;
+    @Resource
+    private UserService userService;
     @Resource
     private IdWorker idWorker;
 
@@ -85,5 +90,24 @@ public class OrderServiceImpl implements OrderService {
             log.info("deleteCart:{}", deleteCart);
         }
         return orderId;
+    }
+
+    @Override
+    @Transactional
+    public String payOrder(Long orderId, Long userId) {
+        Order order = orderMapper.getByOrderId(orderId);
+        User user = userService.getById(userId);
+        if ((user.getMoney().compareTo(order.getSumPrice())) < 0) {
+            return "您的余额不足以支付，请充值";
+        }
+        // 更新用户余额
+        user.setMoney(user.getMoney().subtract(order.getSumPrice()));
+        int updateUser = userService.updateById(user);
+        log.info("updateUser:{}", updateUser);
+        // 修改订单状态
+        order.setStatus(OrderEnums.UNDELIVER.getCode());
+        int updateOrder = orderMapper.updateByPrimaryKeySelective(order);
+        log.info("updateOrder:{}", updateOrder);
+        return "支付成功，共支付:"+order.getSumPrice()+"元,您的余额:"+user.getMoney()+"元";
     }
 }

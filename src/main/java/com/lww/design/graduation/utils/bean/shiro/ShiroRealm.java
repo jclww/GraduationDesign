@@ -1,13 +1,11 @@
 package com.lww.design.graduation.utils.bean.shiro;
 
 
-import com.google.common.base.Strings;
 import com.lww.design.graduation.entity.vo.shiro.ShiroPermissionVO;
 import com.lww.design.graduation.entity.vo.shiro.ShiroRoleVO;
 import com.lww.design.graduation.entity.vo.shiro.ShiroUserVO;
 import com.lww.design.graduation.service.permission.UserService;
 import lombok.extern.slf4j.Slf4j;
-import ma.glasnost.orika.impl.util.StringUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
@@ -16,7 +14,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

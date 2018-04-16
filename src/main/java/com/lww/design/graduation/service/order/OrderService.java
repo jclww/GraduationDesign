@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface OrderService {
     Long createOrder(List<SubOrder> subOrders, Long addressId, Long userId, Boolean clearCart);
+
+    String payOrder(Long orderId, Long userId);
 }
