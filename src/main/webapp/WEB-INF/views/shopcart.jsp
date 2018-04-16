@@ -261,6 +261,7 @@
                 <script type="application/javascript">
                     $("#J_SelectAllCbx2").click(function () {
                         if (($(".bundle-main input[type='checkbox']")).is(':checked')) {
+
                             $(".check").attr("checked", false);
                             countCartPrice();
                         } else {
@@ -293,9 +294,43 @@
                 <strong class="price">¥<em id="J_Total">0.00</em></strong>
             </div>
             <div class="btn-area">
-                <a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+                <a href="javascript:;" onclick="buy()" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
                     <span>结&nbsp;算</span></a>
             </div>
+            <script type="application/javascript">
+//                var totalGoodsPrice = 0.00;
+//                var totalCount = 0;
+//                $(".bundle-main ul").each(function () {
+//                    if ($(this).find($("input[type='checkbox']")).is(':checked')) {
+//                        var count = $(this).find(".goodsCount").val()
+//                        var id = $(this).find(".goodsCount").attr("id")
+//                        var price = $("#price_"+id).text();
+//                        totalGoodsPrice += price * count;
+//                        totalCount += parseInt(count);
+//                    }
+//                })
+//                $("#J_Total").text(totalGoodsPrice.toFixed(2));
+//                $("#J_SelectedItemsCount").text(totalCount);
+                function buy() {
+                    var totalCount = $("#J_SelectedItemsCount").text();
+                    if (totalCount == 0) {
+                        alert("请选择商品结算")
+                        return;
+                    }
+                    var objectArr = [];
+                    $(".bundle-main ul").each(function () {
+                    if ($(this).find($("input[type='checkbox']")).is(':checked')) {
+                        var object = {};
+                        var sku = $(this).find(".goodsCount").attr("id")
+                        var count = $(this).find(".goodsCount").val();
+                        object.skuId = parseInt(sku);
+                        object.count = parseInt(count);
+                        objectArr.push(object);
+                     }
+                    })
+                    window.location.href = "/buy?param="+JSON.stringify(objectArr);
+                }
+            </script>
         </div>
 
     </div>

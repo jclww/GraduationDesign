@@ -105,7 +105,15 @@
 			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
 			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
 			   <!--selectByExampleQueryId="false"></table>-->
-		<table tableName="cart" domainObjectName="Cart"
+		<!--<table tableName="cart" domainObjectName="Cart"-->
+			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
+			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+			   <!--selectByExampleQueryId="false"></table>-->
+		<table tableName="order" domainObjectName="Order"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+		<table tableName="suborder" domainObjectName="SubOrder"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false"></table>
