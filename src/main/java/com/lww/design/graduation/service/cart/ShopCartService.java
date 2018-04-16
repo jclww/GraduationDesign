@@ -11,4 +11,6 @@ public interface ShopCartService {
     List<GoodsDetailVO> getAllGoods(Long userId);
 
     Integer deleteCartById(Long cartId);
+
+    Integer deleteBySkuIdAndUser(List<Long> skuIdList, Long userId);
 }

@@ -101,4 +101,9 @@ public class ShopCartServiceImpl implements ShopCartService {
     public Integer deleteCartById(Long cartId) {
         return cartMapper.deleteByPrimaryKey(cartId);
     }
+
+    @Override
+    public Integer deleteBySkuIdAndUser(List<Long> skuIdList, Long userId) {
+        return cartMapper.deleteBySkuIdAndUser(skuIdList, userId);
+    }
 }

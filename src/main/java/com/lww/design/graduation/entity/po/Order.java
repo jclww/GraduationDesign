@@ -10,7 +10,9 @@ public class Order {
 
     private String orderId;
 
-    private BigDecimal sum;
+    private Long addressId;
+
+    private BigDecimal sumPrice;
 
     private Integer status;
 
@@ -46,12 +48,20 @@ public class Order {
         this.orderId = orderId == null ? null : orderId.trim();
     }
 
-    public BigDecimal getSum() {
-        return sum;
+    public Long getAddressId() {
+        return addressId;
     }
 
-    public void setSum(BigDecimal sum) {
-        this.sum = sum;
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    public BigDecimal getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(BigDecimal sumPrice) {
+        this.sumPrice = sumPrice;
     }
 
     public Integer getStatus() {

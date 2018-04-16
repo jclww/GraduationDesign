@@ -11,4 +11,6 @@ public interface GoodsSKUService {
     List<GoodsSku> getSkuBySpu(Long spu);
 
     List<GoodsSku> getBySku(List<Long> skuList);
+
+    Integer updateById(GoodsSku sku);
 }

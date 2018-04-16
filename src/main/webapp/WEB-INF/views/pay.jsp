@@ -20,6 +20,7 @@
     <link href="../css/basecss/jsstyle.css" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="../js/basejs/address.js"></script>
+    <script src="../js/basejs/jquery-form.js"></script>
 
 </head>
 
@@ -215,7 +216,7 @@
                                         </div>
                                     </li>
                                     <input id="sku_${goods.skuId}" name="sku[]" type="hidden" value="${goods.skuId}:${goods.count}">
-                                    <%--<input id="count_${goods.skuId}" name="count" type="hidden" value="${goods.count}">--%>
+                                    <input name="shopCart" type="hidden" value="true">
                                 </ul>
                             </c:forEach>
                             <div class="clear"></div>
@@ -334,7 +335,26 @@
                         var form = $("#orderForm").html()
                         var addressId = $(".defaultAddr").attr("addressId");
                         $("#address").val(addressId);
-                        $("#orderForm").submit();
+                        $("#orderForm").ajaxSubmit(function (data) {
+                            $(".theme-popover").find("#orderId").val(data.substring(1,data.length-1));
+                            $('.theme-popover-mask').show();
+                            $('.theme-popover-mask').height($(window).height());
+                            $('.theme-popover').slideDown(200);
+                        });
+                        $('.theme-poptit .close,.btn-op .close').click(function() {
+
+                            $(document.body).css("overflow","visible");
+                            $('.theme-login').removeClass("selected");
+                            $('.item-props-can').removeClass("selected");
+                            $('.theme-popover-mask').hide();
+                            $('.theme-popover').slideUp(200);
+                        })
+
+//                        function submitForm(id) {
+//                            $(id).ajaxSubmit(function (data) {
+//                                alert(data)
+//                            })
+//                        }
                     }
                 </script>
                 <div class="clear"></div>
@@ -348,66 +368,35 @@
 
 </div>
 <div class="theme-popover-mask"></div>
-<div class="theme-popover">
+<div class="theme-popover" style="height:150px; margin-bottom:-100px">
 
     <!--标题 -->
     <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> /
-            <small>Add address</small>
+        <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">现在支付</strong> /
+            <small>Pay Now</small>
         </div>
     </div>
     <hr/>
 
     <div class="am-u-md-12">
-        <form class="am-form am-form-horizontal">
+        <form id="pay" class="am-form am-form-horizontal" action="/pay" method="post">
 
-            <div class="am-form-group">
-                <label for="user-name" class="am-form-label">收货人</label>
-                <div class="am-form-content">
-                    <input type="text" id="user-name" placeholder="收货人">
-                </div>
-            </div>
-
-            <div class="am-form-group">
-                <label for="user-phone" class="am-form-label">手机号码</label>
-                <div class="am-form-content">
-                    <input id="user-phone" placeholder="手机号必填" type="email">
-                </div>
-            </div>
-
-            <div class="am-form-group">
-                <label for="user-phone" class="am-form-label">所在地</label>
-                <div class="am-form-content address">
-                    <select data-am-selected>
-                        <option value="a">浙江省</option>
-                        <option value="b">湖北省</option>
-                    </select>
-                    <select data-am-selected>
-                        <option value="a">温州市</option>
-                        <option value="b">武汉市</option>
-                    </select>
-                    <select data-am-selected>
-                        <option value="a">瑞安区</option>
-                        <option value="b">洪山区</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="am-form-group">
-                <label for="user-intro" class="am-form-label">详细地址</label>
-                <div class="am-form-content">
-                    <textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
-                    <small>100字以内写出你的详细地址...</small>
-                </div>
-            </div>
-
+            <input type="hidden" id="orderId" orderId="" value="">
             <div class="am-form-group theme-poptit">
                 <div class="am-u-sm-9 am-u-sm-push-3">
-                    <div class="am-btn am-btn-danger">保存</div>
-                    <div class="am-btn am-btn-danger close">取消</div>
+                    <div class="am-btn am-btn-danger" onclick="payNow()">支付</div>
+                    <div class="am-btn am-btn-danger close">稍后支付</div>
                 </div>
             </div>
         </form>
+
+        <script type="application/javascript">
+            function payNow() {
+                $("#pay").ajaxSubmit(function (data) {
+                    alert(data);
+                })
+            }
+        </script>
     </div>
 
 </div>

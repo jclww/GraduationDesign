@@ -41,6 +41,13 @@
     delete from cart
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteBySkuIdAndUser">
+    delete from cart
+    where user_id = #{userId} AND sku_id in
+    <foreach item="item" index="index" collection="skuIdList" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
   <insert id="insert" parameterType="com.lww.design.graduation.entity.po.Cart" >
     insert into cart (id, user_id, sku_id, 
       status, count)

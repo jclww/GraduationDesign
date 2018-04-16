@@ -44,11 +44,11 @@
 		</javaClientGenerator>
 
 		<!-- 要生成哪些表 -->
-		<!--<table tableName="user" domainObjectName="User"-->
-			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
-			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-			   <!--selectByExampleQueryId="false"></table>-->
-		<!---->
+		<table tableName="user" domainObjectName="User"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+
 		<!--<table tableName="role" domainObjectName="Role"-->
 			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
 			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
@@ -109,14 +109,14 @@
 			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
 			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
 			   <!--selectByExampleQueryId="false"></table>-->
-		<table tableName="order" domainObjectName="Order"
-			   enableCountByExample="false" enableUpdateByExample="false"
-			   enableDeleteByExample="false" enableSelectByExample="false"
-			   selectByExampleQueryId="false"></table>
-		<table tableName="suborder" domainObjectName="SubOrder"
-			   enableCountByExample="false" enableUpdateByExample="false"
-			   enableDeleteByExample="false" enableSelectByExample="false"
-			   selectByExampleQueryId="false"></table>
+		<!--<table tableName="orders" domainObjectName="Order"-->
+			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
+			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+			   <!--selectByExampleQueryId="false"></table>-->
+		<!--<table tableName="suborder" domainObjectName="SubOrder"-->
+			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
+			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+			   <!--selectByExampleQueryId="false"></table>-->
 
 	</context>
 </generatorConfiguration>

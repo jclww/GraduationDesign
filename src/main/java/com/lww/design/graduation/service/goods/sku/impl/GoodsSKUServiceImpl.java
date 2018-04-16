@@ -62,4 +62,9 @@ public class GoodsSKUServiceImpl implements GoodsSKUService {
     public List<GoodsSku> getBySku(List<Long> skuList) {
         return goodsSkuMapper.getBySku(skuList);
     }
+
+    @Override
+    public Integer updateById(GoodsSku sku) {
+        return goodsSkuMapper.updateByPrimaryKeySelective(sku);
+    }
 }
