@@ -242,9 +242,12 @@
                     id = id.substring(0, id.length-1);
                     $(skuInfo).each(function (index, value) {
                         if(id == value.id) {
-                            $("#goodsForm").attr("action","/buy");
-                            $("#sku").val(value.skuId);
-                            $("#goodsForm").submit();
+                            var objectArr = [];
+                            var object = {};
+                            object.skuId = parseInt(value.skuId);
+                            object.count = parseInt($("#text_box").val());
+                            objectArr.push(object)
+                            window.location.href = "/buy?param="+JSON.stringify(objectArr)+"&shopCart=false";
                             return false;
                         }
                         if (index == (skuInfo.length-1)) {

@@ -328,7 +328,7 @@
                         objectArr.push(object);
                      }
                     })
-                    window.location.href = "/buy?param="+JSON.stringify(objectArr);
+                    window.location.href = "/buy?param="+JSON.stringify(objectArr)+"&shopCart=true";
                 }
             </script>
         </div>

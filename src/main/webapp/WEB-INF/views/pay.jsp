@@ -216,7 +216,7 @@
                                         </div>
                                     </li>
                                     <input id="sku_${goods.skuId}" name="sku[]" type="hidden" value="${goods.skuId}:${goods.count}">
-                                    <input name="shopCart" type="hidden" value="true">
+                                    <input name="shopCart" type="hidden" value="${shopCart}">
                                 </ul>
                             </c:forEach>
                             <div class="clear"></div>
@@ -227,21 +227,21 @@
             </div>
         </div>
         <div class="clear"></div>
-        <div class="pay-total">
-            <!--留言-->
-            <div class="order-extra">
-                <div class="order-user-info">
-                    <div id="holyshit257" class="memo">
-                        <label>买家留言：</label>
-                        <input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明"
-                               class="memo-input J_MakePoint c2c-text-default memo-close">
-                        <div class="msg hidden J-msg">
-                            <p class="error">最多输入500个字符</p>
-                        </div>
-                    </div>
-                </div>
+        <%--<div class="pay-total">--%>
+            <%--<!--留言-->--%>
+            <%--<div class="order-extra">--%>
+                <%--<div class="order-user-info">--%>
+                    <%--<div id="holyshit257" class="memo">--%>
+                        <%--<label>买家留言：</label>--%>
+                        <%--<input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明"--%>
+                               <%--class="memo-input J_MakePoint c2c-text-default memo-close">--%>
+                        <%--<div class="msg hidden J-msg">--%>
+                            <%--<p class="error">最多输入500个字符</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
-            </div>
+            <%--</div>--%>
 
         </div>
         <!--含运费小计 -->
@@ -371,12 +371,12 @@
 
     <div class="am-u-md-12">
         <form id="payForm" class="am-form am-form-horizontal" action="/pay" method="post">
-
+            订单已经生成！
             <input type="hidden" id="orderId" orderId="" name="orderId" value="">
             <div class="am-form-group theme-poptit">
                 <div class="am-u-sm-9 am-u-sm-push-3">
-                    <div class="am-btn am-btn-danger" onclick="payNow()">支付</div>
-                    <div class="am-btn am-btn-danger close">稍后支付</div>
+                    <div class="am-btn am-btn-danger" onclick="payNow()">现在支付</div>
+                    <div class="am-btn am-btn-danger close" onclick="noPay()">稍后支付</div>
                 </div>
             </div>
         </form>
@@ -399,6 +399,9 @@
                     $('.theme-popover-mask').height($(window).height());
                     $('#payResult').slideDown(200);
                 })
+            }
+            function noPay() {
+                window.location.href = "/person";
             }
         </script>
     </div>
