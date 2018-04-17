@@ -10,10 +10,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -56,5 +53,42 @@ public class OrderController {
         }).collect(Collectors.toList());
         Long orderId = orderService.createOrder(subOrders, addressId, shiroUserVO.getId(), shopCart);
         return orderId.toString();
+    }
+
+    @RequestMapping(value="/order/receive/{orderId}",method= RequestMethod.GET)
+    public String receiveOrder(@PathVariable(value = "orderId") Long orderId) {
+        Subject subject = SecurityUtils.getSubject();
+        ShiroUserVO shiroUserVO = (ShiroUserVO)subject.getPrincipal();
+        log.info("shiroUserVO:{}", JSON.toJSONString(shiroUserVO));
+        if (shiroUserVO == null) {
+            return "请登录";
+        }
+        int receiveStatus = orderService.receiveStatus(orderId);
+        log.info("receiveStatus:{}", receiveStatus);
+        return "收货成功";
+    }
+    @RequestMapping(value="/order/deliver/{orderId}",method= RequestMethod.GET)
+    public String deliverOrder(@PathVariable(value = "orderId") Long orderId) {
+        Subject subject = SecurityUtils.getSubject();
+        ShiroUserVO shiroUserVO = (ShiroUserVO)subject.getPrincipal();
+        log.info("shiroUserVO:{}", JSON.toJSONString(shiroUserVO));
+        if (shiroUserVO == null) {
+            return "请登录";
+        }
+        int deliverStatus = orderService.deliver(orderId);
+        log.info("deliverStatus:{}", deliverStatus);
+        return "发货成功";
+    }
+    @RequestMapping(value="/order/pay/{orderId}",method= RequestMethod.GET)
+    public String payOrder(@PathVariable(value = "orderId") Long orderId, ModelMap model) {
+        Subject subject = SecurityUtils.getSubject();
+        ShiroUserVO shiroUserVO = (ShiroUserVO)subject.getPrincipal();
+        log.info("shiroUserVO:{}", JSON.toJSONString(shiroUserVO));
+        if (shiroUserVO == null) {
+            return "请登录";
+        }
+        String payStatus = orderService.payOrder(orderId, shiroUserVO.getId());
+        log.info("payStatus:{}", payStatus);
+        return payStatus;
     }
 }

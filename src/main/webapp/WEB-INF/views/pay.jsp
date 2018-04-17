@@ -414,7 +414,7 @@
                 })
             }
             function noPay() {
-                window.location.href = "/person";
+                window.location.href = "/person/order";
             }
         </script>
     </div>
@@ -430,7 +430,7 @@
     <hr/>
 
     <div class="am-u-md-12">
-        <form id="resultForm" class="am-form am-form-horizontal" action="/person" method="get">
+        <form id="resultForm" class="am-form am-form-horizontal" action="/person/order" method="get">
             <p id="resultMsg">你怎么能看到我？？？？？？</p>
             <div class="am-form-group theme-poptit">
                 <div class="am-u-sm-9 am-u-sm-push-3">

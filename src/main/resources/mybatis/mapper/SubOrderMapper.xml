@@ -18,6 +18,15 @@
     from suborder
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="getSubOrderByOrderId" resultMap="BaseResultMap" parameterType="java.util.List" >
+    select
+    <include refid="Base_Column_List" />
+    from suborder
+    where order_id in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from suborder
     where id = #{id,jdbcType=BIGINT}

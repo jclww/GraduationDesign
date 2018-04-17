@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class SkuAttributeVO {
     private String attributeName;
+    private Long skuId;
     private String optionName;
 }
