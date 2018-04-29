@@ -28,6 +28,32 @@
       #{item}
     </foreach>
   </select>
+
+  <sql id="SO_Where_Clause">
+    <where>
+      <if test="name!=null">
+        AND `name` LIKE CONCAT('%', #{name} ,'%' )
+      </if>
+      <if test="categoryId!=null">
+        AND category_id = #{categoryId}
+      </if>
+      <if test="categoryIdList!=null">
+        AND category_id in
+        <foreach collection="categoryIdList" close=")" open="(" separator="," item="item">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </sql>
+
+
+  <select id="search" resultMap="BaseResultMap">
+    select * from goods_spu
+    <include refid="SO_Where_Clause"/>
+    <include refid="Base.Page_Clause"/>
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from goods_spu
     where id = #{id,jdbcType=BIGINT}

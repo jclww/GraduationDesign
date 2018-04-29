@@ -34,6 +34,39 @@ public class FileController {
     public void getJpegImage(@PathVariable(value = "fileId") String fileId, @PathVariable(value = "user") String user, HttpServletResponse response) {
         getImage(fileId, user, AppConstant.JPEG_SUFFIX, response);
     }
+    @RequestMapping(value = "/image/goods/{spuId}/{imgname}.jpg")
+    public void getGoodsJpgImage(@PathVariable(value = "spuId") String spuId, @PathVariable(value = "imgname") String imgname, HttpServletResponse response) {
+        getGoodsImage(spuId, imgname, AppConstant.JPG_SUFFIX, response);
+    }
+    @RequestMapping(value = "/image/goods/{spuId}/detail/{imgname}.jpg")
+    public void getGoodsDetailJpgImage(@PathVariable(value = "spuId") String spuId, @PathVariable(value = "imgname") String imgname, HttpServletResponse response) {
+        getGoodsImage(spuId, "detail/" + imgname, AppConstant.JPG_SUFFIX, response);
+    }
+
+    public void getGoodsImage(String spuId, String imgname, String suffix, HttpServletResponse response) {
+        log.info("get goodsImg spuId:{} imgname:{}", spuId, imgname);
+        FileInputStream fis = null;
+        response.setContentType("image/gif");
+        try {
+            OutputStream out = response.getOutputStream();  //通过response显示图片
+            File file = new File(AppConstant.GOODS_IMG_UPLOAD_PATH + spuId + "/" + imgname + suffix);     //服务器上图片的路径
+            fis = new FileInputStream(file);
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            out.write(b);
+            out.flush();
+        } catch (Exception e) {
+            log.error("get file error, message:{}", e.getMessage());
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    log.error("IO close error, message:{}", e.getMessage());
+                }
+            }
+        }
+    }
 
 
     public void getImage(String fileId, String user, String suffix, HttpServletResponse response) {

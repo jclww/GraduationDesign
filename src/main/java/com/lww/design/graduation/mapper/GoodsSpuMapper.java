@@ -1,5 +1,6 @@
 package com.lww.design.graduation.mapper;
 
+import com.lww.design.graduation.entity.dao.goods.GoodsSO;
 import com.lww.design.graduation.entity.po.GoodsSku;
 import com.lww.design.graduation.entity.po.GoodsSpu;
 
@@ -19,4 +20,6 @@ public interface GoodsSpuMapper {
     int updateByPrimaryKey(GoodsSpu record);
 
     List<GoodsSpu> getByIdList(List<Long> spuList);
+
+    List<GoodsSpu> search(GoodsSO goodsSO);
 }

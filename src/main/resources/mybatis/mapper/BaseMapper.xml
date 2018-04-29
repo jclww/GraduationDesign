@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Base">
+    <!--<sql id="Order_By_Clause">-->
+        <!--<if test="sorts != null and sorts.size > 0">-->
+            <!--ORDER BY-->
+            <!--<foreach item="item" collection="sorts" separator=",">-->
+                <!--<if test="item.sortKey !=null and item.sortKey!=''">${item.sortKey}</if>-->
+                <!--<if test="item.sortOrder !=null and item.sortOrder!=''">${item.sortOrder}</if>-->
+            <!--</foreach>-->
+        <!--</if>-->
+    <!--</sql>-->
+    <!--分页,防止非法的limit。-->
+    <sql id="Page_Clause">
+        <if test="pageSize == null or 0 > pageSize or pageSize > 1000 ">
+            LIMIT 200
+        </if>
+        <if test="pageSize != null and pageSize > 0 and 1000>=pageSize">
+            LIMIT #{pageSize}
+        </if>
+        <if test="pageNo != null and pageNo > 1">
+            OFFSET #{offSet}
+        </if>
+    </sql>
+</mapper>

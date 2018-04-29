@@ -23,7 +23,17 @@
         </div>
     </div>
     <div class="am-form-group">
-        <div class="zuo">栏目关键词：</div>
+        <div class="zuo">商品类别：</div>
+        <div class="you">
+            <select data-am-selected="{btnWidth: 70, btnSize: 'sm', btnStyle: 'default'}">
+                <option value="b">全部</option>
+                <option value="o">产品</option>
+                <option value="o">会员</option>
+            </select>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <div class="zuo">商品属性选择：</div>
         <div class="you">
             <select data-am-selected="{btnWidth: 70, btnSize: 'sm', btnStyle: 'default'}">
                 <option value="b">全部</option>
@@ -42,6 +52,13 @@
         <div class="zuo">商品图片：</div>
         <div class="you" style="height: 45px;">
             <input type="file" name="imgs" id="doc-ipt-file-1" multiple="multiple">
+            <!--<p class="am-form-help">请选择要上传的文件...</p>-->
+        </div>
+    </div>
+    <div class="am-form-group am-cf">
+        <div class="zuo">商品详情图片：</div>
+        <div class="you" style="height: 45px;">
+            <input type="file" name="detailImgs" id="doc-ipt-file-1" multiple="multiple">
             <!--<p class="am-form-help">请选择要上传的文件...</p>-->
         </div>
     </div>

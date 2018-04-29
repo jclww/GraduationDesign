@@ -33,7 +33,7 @@
                         <%--<a href="#" target="_top">免费注册</a>--%>
                         <%--</div>--%>
                         <div class="member-login">
-                            欢迎您,${userName},<a href="/person/logout">安全退出</a>
+                            欢迎您,${user.name},<a href="/person/logout">安全退出</a>
                         </div>
                     </div>
                 </ul>
@@ -46,7 +46,7 @@
                                 class="am-icon-user am-icon-fw"></i>个人中心</a></div>
                     </div>
                     <div class="topMessage mini-cart">
-                        <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
+                        <div class="menu-hd"><a id="mc-menu-hd" href="/cart" target="_top"><i
                                 class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
                                                                                                       class="h">0</strong></a>
                         </div>
@@ -112,11 +112,11 @@
                             </a>
                             <div class="m-baseinfo">
                                 <a class="m-pic" href="/person/information">
-                                    <img src="${avatar}">
+                                    <img src="${user.avatarUrl}">
                                     <%--<img src="/image/avatar/new4.png">--%>
                                 </a>
                                 <div class="m-info">
-                                    <em class="s-name">${nickName}</em>
+                                    <em class="s-name">${user.aliasName}</em>
                                     <div class="vip1"><a href="#"><span></span><em>会员专享</em></a></div>
                                     <div class="safeText"><a href="safety.html">账户安全:<em
                                             style="margin-left:20px ;">60</em>分</a>
@@ -124,7 +124,7 @@
                                         </div>
                                     </div>
                                     <div class="m-address">
-                                        <a href="address.html" class="i-trigger">收货地址<i class="am-icon-angle-right"
+                                        <a href="/person/address" class="i-trigger">收货地址<i class="am-icon-angle-right"
                                                                                         style="padding-left:5px ;"></i></a>
                                     </div>
                                 </div>
@@ -145,19 +145,19 @@
                             </div>
                             <p class="m-coupon">
                                 <a href="coupon.html">
-                                    <em class="m-num">2</em>
+                                    <em class="m-num">0</em>
                                     <span class="m-title">优惠券</span>
                                 </a>
                             </p>
                             <p class="m-wallet">
                                 <a href="wallet.html">
-                                    <em class="m-num">0.00</em>
+                                    <em class="m-num">${user.money}元</em>
                                     <span class="m-title">账户余额</span>
                                 </a>
                             </p>
                             <p class="m-bill">
                                 <a href="pointnew.html">
-                                    <em class="m-num">10</em>
+                                    <em class="m-num">0</em>
                                     <span class="m-title">总积分</span>
                                 </a>
                             </p>
@@ -195,7 +195,7 @@
                     <div class="m-order">
                         <div class="s-bar">
                             <i class="s-icon"></i>我的订单
-                            <a class="i-load-more-item-shadow" href="order.html">全部订单</a>
+                            <a class="i-load-more-item-shadow" href="/person/order">全部订单</a>
                         </div>
                         <%--<ul>--%>
                         <%--<li><a href="order.html"><i><img src="../img/baseimages/pay.png"/></i><span>待付款</span></a>--%>
@@ -299,52 +299,6 @@
                         </ul>
                     </div>
 
-                    <div class="user-suggestion">
-                        <div class="s-bar">
-                            <i class="s-icon"></i>会员中心
-                        </div>
-                        <div class="s-bar">
-                            <a href="suggest.html"><i class="s-icon"></i>意见反馈</a>
-                        </div>
-                    </div>
-
-                    <!--优惠券积分-->
-                    <div class="twoTab">
-                        <div class="twoTabModel Coupon">
-                            <h5 class="squareTitle"><a href="#"><span class="splitBorder"></span>优惠券<i
-                                    class="am-icon-angle-right"></i></a></h5>
-                            <div class="Box">
-                                <div class="CouponList">
-                                    <span class="price">¥<strong class="num">50</strong></span>
-                                    <p class="brandName"><a href="#">ABC品牌499减50</a></p>
-                                    <p class="discount">满<span>499</span>元抵扣</p>
-                                    <a href="#" class="btnReceive">立即领取</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="twoTabModel credit">
-                            <h5 class="squareTitle"><a href="#"><span class="splitBorder"></span>积分商城<i
-                                    class="am-icon-angle-right"></i></a></h5>
-                            <div class="Box">
-                                <p class="countDown">
-                                    <span class="hour">12</span>：<span class="minute">09</span>：<span
-                                        class="second">02</span><em class="txtStart">即将开始</em>
-                                </p>
-                                <div class="am-slider am-slider-default am-slider-carousel"
-                                     data-am-flexslider="{itemWidth:108, itemMargin:3, slideshow: false}">
-                                    <ul class="am-slides">
-                                        <li><a href="#"><img src="../img/baseimages/333.jpg"/></a></li>
-                                        <li><a href="#"><img src="../img/baseimages/222.jpg"/></a></li>
-                                        <li><a href="#"><img src="../img/baseimages/111.jpg"/></a></li>
-                                        <li><a href="#"><img src="../img/baseimages/333.jpg"/></a></li>
-                                        <li><a href="#"><img src="../img/baseimages/222.jpg"/></a></li>
-                                        <li><a href="#"><img src="../img/baseimages/111.jpg"/></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <div class="wrap-right">
@@ -372,7 +326,7 @@
                         <a class="i-load-more-item-shadow">15款新品</a>
                     </div>
                     <div class="new-goods-info">
-                        <a class="shop-info" href="#">
+                        <a class="shop-info" href="/item/1">
                             <div class="face-img-panel">
                                 <img src="../img/baseimages/imgsearch1.jpg" alt="">
                             </div>
@@ -389,9 +343,9 @@
                         <i class="s-icon"></i>热卖推荐
                     </div>
                     <div class="new-goods-info">
-                        <a class="shop-info" href="#" target="_blank">
+                        <a class="shop-info" href="/item/1" target="_blank">
                             <div>
-                                <img src="../img/baseimages/666.jpg" alt="">
+                                <img src="../img/baseimages/imgsearch1.jpg" alt="">
                             </div>
                             <span class="one-hot-goods">￥189.60</span>
                         </a>
@@ -399,97 +353,6 @@
                 </div>
             </div>
             <div class="clear"></div>
-
-            <!--收藏和足迹-->
-            <div data-am-widget="tabs" class="am-tabs collection">
-                <ul class="am-tabs-nav am-cf">
-                    <li class="am-active"><a href="[data-tab-panel-0]"><i class="am-icon-heart"></i>商品收藏</a></li>
-                    <li class=""><a href="[data-tab-panel-1]"><i class="am-icon-paw"></i>购物足迹</a></li>
-                </ul>
-                <div class="am-tabs-bd">
-
-                    <div data-tab-panel-0 class="am-tab-panel am-active">
-                        <div class="am-slider am-slider-default am-slider-carousel"
-                             data-am-flexslider="{itemWidth:155,slideshow: false}">
-                            <ul class="am-slides">
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/EZA27501.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/BxJk6.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/Hxcag60.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/youzi.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/EZA27501.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/BxJk6.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/Hxcag60.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/youzi.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div data-tab-panel-1 class="am-tab-panel ">
-                        <div class="am-slider am-slider-default am-slider-carousel"
-                             data-am-flexslider="{itemWidth:155, slideshow: false}">
-                            <ul class="am-slides">
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/BxJk6.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/Hxcag60.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/youzi.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/EZA27501.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/BxJk6.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/Hxcag60.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/youzi.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                                <li>
-                                    <a><img class="am-thumbnail" src="../img/baseimages/EZA27501.jpg"/></a>
-                                    <strong class="price">¥32.9</strong>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
         </div>
         <!--底部-->

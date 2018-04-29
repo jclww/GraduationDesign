@@ -710,21 +710,20 @@
     <aside class="menu">
         <ul>
             <li class="person active">
-                <a href="index.html"><i class="am-icon-user"></i>个人中心</a>
+                <a href="/person"><i class="am-icon-user"></i>个人中心</a>
             </li>
             <li class="person">
                 <p><i class="am-icon-newspaper-o"></i>个人资料</p>
                 <ul>
-                    <li><a href="information.html">个人信息</a></li>
-                    <li><a href="safety.html">安全设置</a></li>
-                    <li><a href="address.html">地址管理</a></li>
-                    <li><a href="cardlist.html">快捷支付</a></li>
+                    <li><a href="/person/information">个人信息</a></li>
+                    <li><a href="/person/password">修改密码</a></li>
+                    <li><a href="/person/address">地址管理</a></li>
                 </ul>
             </li>
             <li class="person">
                 <p><i class="am-icon-balance-scale"></i>我的交易</p>
                 <ul>
-                    <li><a href="order.html">订单管理</a></li>
+                    <li><a href="/person/order">订单管理</a></li>
                     <li><a href="change.html">退款售后</a></li>
                     <li><a href="comment.html">评价商品</a></li>
                 </ul>

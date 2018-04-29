@@ -43,4 +43,21 @@ public class UserServiceImpl implements UserService {
     public Integer updateById(User user) {
         return userMapper.updateByPrimaryKeySelective(user);
     }
+
+    @Override
+    public Integer insert(User user) {
+        return userMapper.insertSelective(user);
+    }
+
+    @Override
+    public ShiroUserVO login(String username) {
+        User user = null;
+        if (username.contains("@")) {
+            user = userMapper.selectByEmail(username);
+        } else {
+            user = userMapper.selectByPhone(username);
+        }
+        log.info("login loginName:{} get user:{}", username, JSON.toJSONString(user));
+        return orikaBeanUtil.convert(user, ShiroUserVO.class);
+    }
 }

@@ -2,6 +2,7 @@ package com.lww.design.graduation.utils.bean.shiro;
 
 
 import com.alibaba.fastjson.JSON;
+import com.lww.design.graduation.common.exception.BizException;
 import com.lww.design.graduation.entity.vo.shiro.ShiroPermissionVO;
 import com.lww.design.graduation.entity.vo.shiro.ShiroRoleVO;
 import com.lww.design.graduation.entity.vo.shiro.ShiroUserVO;
@@ -97,7 +98,8 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authToken;
         // TODO 需要支持邮箱 / 用户名 / 帐号登录
-        ShiroUserVO user = userService.getByAccount(Long.valueOf(token.getUsername()));
+        ShiroUserVO user = userService.login(token.getUsername());
+//        ShiroUserVO user = userService.getByAccount(Long.valueOf(token.getUsername()));
         log.info("user:{}", JSON.toJSONString(user));
         if (user != null) {
             return new SimpleAuthenticationInfo(user, user.getPassWord(), user.toString());

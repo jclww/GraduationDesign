@@ -10,4 +10,8 @@ public interface UserService {
     ShiroUserVO getUserPermissionById(String userName);
 
     Integer updateById(User user);
+
+    Integer insert(User user);
+
+    ShiroUserVO login(String username);
 }

@@ -38,6 +38,8 @@ public class AppConstant {
 
     public static final String AVATAR_UPLOAD_PATH = "/data/uploadFile/image/avatar/";
 
+    public static final String GOODS_IMG_UPLOAD_PATH = "/data/uploadFile/image/goods/";
+
     /**
      * 帐号key
      */

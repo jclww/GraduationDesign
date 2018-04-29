@@ -44,7 +44,7 @@ public class HelloController {
         return JSON.toJSONString(str);
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/search1")
     @ResponseBody
     public String search() {
         logger.info("asdsadsa");
