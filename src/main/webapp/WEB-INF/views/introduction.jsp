@@ -247,7 +247,9 @@
                             object.skuId = parseInt(value.skuId);
                             object.count = parseInt($("#text_box").val());
                             objectArr.push(object)
-                            window.location.href = "/buy?param="+JSON.stringify(objectArr)+"&shopCart=false";
+                            var url = "/buy?param="+JSON.stringify(objectArr)+"&shopCart=false";
+                            url = url.replace("\"", "%22").replace("{", "%7b").replace("}", "%7d");
+                            window.location.href = url;
                             return false;
                         }
                         if (index == (skuInfo.length-1)) {

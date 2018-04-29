@@ -328,7 +328,9 @@
                         objectArr.push(object);
                      }
                     })
-                    window.location.href = "/buy?param="+JSON.stringify(objectArr)+"&shopCart=true";
+                    var url = "/buy?param="+JSON.stringify(objectArr)+"&shopCart=true";
+                    url = url.replace("\"", "%22").replace("{", "%7b").replace("}", "%7d");
+                    window.location.href = url;
                 }
             </script>
         </div>
