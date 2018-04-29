@@ -118,7 +118,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public String payOrder(Long orderId, Long userId) {
         Order order = orderMapper.getByOrderId(orderId);
-        if (!order.getStatus().equals(OrderEnums.UNPAID)) {
+        if (!order.getStatus().equals(OrderEnums.UNPAID.getCode())) {
             return "已经付款了,不需要重复付款～";
         }
         User user = userService.getById(userId);

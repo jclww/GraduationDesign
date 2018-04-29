@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .zuo{
+            width: 19%;text-align: right;margin-right: 1%;float: left;line-height: 33px;margin-bottom: 10px
+        }
+        .you{width: 80%;float: right;margin-bottom: 10px}
+    </style>
+</head>
+<link rel="stylesheet" href="../AmazeUI-2.4.2/assets/css/amazeui.min.css"/>
+
+<body>
+<form id="addGoodsForm" class="am-form am-form-horizontal" action="/admin/goods" method="post">
+
+    <br>
+    <div class="am-form-group">
+        <div class="zuo">商品名称：</div>
+        <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <div class="zuo">栏目关键词：</div>
+        <div class="you">
+            <select data-am-selected="{btnWidth: 70, btnSize: 'sm', btnStyle: 'default'}">
+                <option value="b">全部</option>
+                <option value="o">产品</option>
+                <option value="o">会员</option>
+            </select>
+        </div>
+    </div>
+    <div class="am-form-group am-cf">
+        <div class="zuo">商品详情描述：</div>
+        <div class="you">
+            <textarea class="" rows="2" id="doc-ta-1"></textarea>
+        </div>
+    </div>
+    <div class="am-form-group am-cf">
+        <div class="zuo">商品图片：</div>
+        <div class="you" style="height: 45px;">
+            <input type="file" name="imgs" id="doc-ipt-file-1" multiple="multiple">
+            <!--<p class="am-form-help">请选择要上传的文件...</p>-->
+        </div>
+    </div>
+    <div class="am-form-group am-cf">
+        <div class="you">
+            <p>
+                <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+            </p>
+        </div>
+    </div>
+</form>
+</body>
+</html>
