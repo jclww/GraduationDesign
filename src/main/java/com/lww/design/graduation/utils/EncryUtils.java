@@ -23,6 +23,9 @@ public class EncryUtils {
 
     public static void main(String[] args) {
         System.out.println(encryPwd("123456"));
+        String enc = getSha1("sadamdojwpoqkdwdpasldpokpkapodkoskpoaksodkapsd,la,l;dlas,da"+ AppConstant.PWD_ENCRY_SUFFIX);
+
+        System.out.println(enc+"\tlen:"+enc.length());
 //		System.out.println(encryPwd("hiveview"));
     }
 
@@ -62,6 +65,7 @@ public class EncryUtils {
 
             byte[] md = mdTemp.digest();
             int j = md.length;
+            System.out.println(j);
             char[] buf = new char[j * 2];
             int k = 0;
             for (int i = 0; i < j; i++) {
